@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width">
+    <title>beep boop</title>
+    <style type="text/css">
+        p { font-family: Ubuntu }
+        button { font-family: Consolas; background-color: white; color: black; border: 1px solid #808080; }
+        button:hover { background-color: #808080; color: white; }
+        button:active { border: 1px solid #F0F0E0; }
+        body { background-color: #F0F0EE; }
+        input, textarea { background-color: #F0F0EF; box-shadow: 1px 1px #8F8F8F; }
+        footer { position:absolute; bottom:2em; right:2.5em; }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
+</head>
+<body onload="restoreSave()">
+    <p>Insert sentences to pull from below:</p>
+    <textarea rows=25 cols=80 id='database'></textarea>
+    <p>Number of responses to create:</p>
+    <input type='text' id='responseCt'><br>
+    <br><button onclick='markovify()'><b>BEEP BOOP</b></button>
+    <p>Output:<p>
+    <p id='outputText'></p>
+    <script type="text/javascript">
+        var endingChars = [".", "!", ">", "?", "}", "~", "{", ";"];
+        function restoreSave() {
+            document.getElementById('database').innerHTML = document.cookie.substr(5).replace(/\u21C2/g, '\n');
+        }
+        function markovify() {
+            document.cookie = "list=" + document.getElementById('database').value.match(/[^\r\n]+/g).join('\u21C2');
+            var markovChain = new Array();
+            var database = document.getElementById('database').value.match(/[^\r\n]+/g);
+            for (var line = 0; line < database.length; line++) {
+                var quote = database[line].split(' ');
+                if (!endingChars.includes(quote[quote.length - 1].substr(-1))) { quote[quote.length - 1] += "."; }
+                for (var word = 0; word < quote.length; word++) {
+                    if (word == quote.length - 1) {
+                        if (typeof markovChain['__end'] == 'undefined') {markovChain['__end'] = new Array();}
+                        markovChain['__end'].push(quote[word]);
+                    } else {
+                        if (word == 0) {
+                            if (typeof markovChain['__start'] == 'undefined') {markovChain['__start'] = new Array();}
+                            markovChain['__start'].push(quote[word]);
+                        }
+                        if (typeof markovChain[quote[word]] == 'undefined' || typeof markovChain[quote[word]] == 'function') {markovChain[quote[word]] = new Array();}
+                        markovChain[quote[word]].push(quote[word + 1]);
+                    }
+                }
+            }
+            var responses = [];
+            for (var i = 0; i < parseInt(document.getElementById('responseCt').value); i++) {
+                var startWords = markovChain['__start'];
+                var currentWord = startWords[Math.floor(Math.random()*startWords.length)];
+                var response = currentWord;
+
+                while (!endingChars.includes(currentWord.substr(-1))) {
+                    currentWord = markovChain[currentWord][[Math.floor(Math.random()*markovChain[currentWord].length)]];
+                    response += " " + currentWord;
+                }
+                responses.push(response);
+            }
+            document.getElementById('outputText').innerHTML = responses.join('<br/>');
+        }
+    </script> 
+</body>
+<footer><a href="https:/github.com/jaerdon/beepboop"><img src="/images/github.png"</a></footer>
+</html>

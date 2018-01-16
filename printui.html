@@ -1,0 +1,123 @@
+<html>
+<head>
+	<title>PrintUI 3D by Jaerdon</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<body onload="gcodeHackery()">
+	<style type="text/css">
+		#printProgress { width: 100%; background-color: grey; }
+		#gCodeLog { border: 3px solid white; margin-bottom: 2px; background: #e6e6e6; padding: 1px 4px; overflow: auto; min-height: 40%; max-height: 40%; font-family: Roboto Light; }
+
+		#bar { font-family: Roboto Medium; width: 100%;	height: 30px; vertical-align: bottom; background-color: lightgrey; text-align: center; font-size: 105%; line-height: 30px; color: white; }
+
+		#mainWindow { column-count: 2; }
+		#arrowPad { column-count: 3; column-gap: 1px; height: 8.67em; }
+		#homeSet { column-count: 3; column-gap: 1px; height: 3em; }
+
+		#footer { position: fixed; bottom: 0; right: 0; left: 0; width: 100%;}
+		
+		.input { height: 2.75em; width: 100%; position: relative; font-size: 1.05em; text-align: center; background-color: #C9C9C9; color: black; border: 3px solid white; }
+
+		.buttonX { height: 2.75em; width: 100%; font-family: Roboto; position: relative; font-size: 1.05em; background-color: #E2071C; color: white; border: 3px solid white; }
+		.buttonX:hover { background-color: #FF4D4D; color: white; }
+		.buttonX:active { border: 3px solid white; background-color: #D11D05; }
+
+		.buttonY { height: 2.75em; width: 100%; font-family: Roboto; position: relative; font-size: 1.05em; background-color: #57A71C; color: white; border: 3px solid white; }
+		.buttonY:hover { background-color: #4CC355; color: white; }
+		.buttonY:active { border: 3px solid white; background-color: green; }
+
+		.buttonZ { height: 2.75em; width: 100%; font-family: Roboto; position: relative; font-size: 1.05em; background-color: #10aded; color: white; border: 3px solid white; }
+		.buttonZ:hover { background-color: lightblue; color: white; }
+		.buttonZ:active { border: 3px solid white; background-color: #10a0bd; }
+
+		.buttonE { height: 2.75em; width: 100%; font-family: Roboto; position: relative; font-size: 1.05em; background-color: gold; color: white; border: 3px solid white; }
+		.buttonE:hover { background-color: yellow; color: white; }
+		.buttonE:active { border: 3px solid white; background-color: #DEBB1E; }
+
+		.buttonAll { height: 2.75em; width: 100%; font-family: Roboto; position: relative; font-size: 1.05em; background-color: orange; color: white; border: 3px solid white; }
+		.buttonAll:hover { background-color: #FED02A; color: white; }
+		.buttonAll:active { border: 3px solid white; background-color: #FA6607; }
+
+	</style>
+	
+	<div id="printProgess">
+		<div id="bar">Idle</div>
+	</div><br>
+	<div id="mainWindow">
+		<embed src=null width="100%" height="70%">
+		<button class="buttonAll" style="background-color: darkred" onclick="eStop()">EMERGENCY STOP</button>
+		<div id="arrowPad">
+			<button class="buttonE"><p>E▲</p></button>
+			<button class="buttonX" onclick="move('X-');"><p>-X</p></button>
+			<button class="buttonE"><p>E▼</p></button>
+
+			<button class="buttonY" onclick="move('Y');"><p>+Y</p></button>
+			<input id="count" type=number class="input" min="1" max="120" value="10"></input>
+			<button class="buttonY" onclick="move('Y-')"><p>-Y</p></button>
+
+			<button class="buttonZ" onclick="move('Z')"><p>+Z</p></button>
+			<button class="buttonX" onclick="move('X')"><p>+X</p></button>
+			<button class="buttonZ" onclick="move('Z-')"><p>-Z</p></button>
+		</div>
+		<div id="gCodeLog">;GCode Log</div>
+		<input id="gCodeInput" class="input"></input>
+		<button class="buttonAll" onclick='sendGCode(document.getElementById("gCodeInput").value); document.getElementById("gCodeInput").value=""'>Send GCode</button>
+	</div>
+	<div id="footer">
+		<div id="homeSet">
+			<button class="buttonX" onclick='sendGCode("G28X0")'><b>Home X Axis</b></button>
+			<button class="buttonY" onclick='sendGCode("G28Y0")'><b>Home Y Axis</b></button>
+			<button class="buttonZ" onclick='sendGCode("G28Z0")'><b>Home Z Axis</b></button>
+		</div>
+		<button class="buttonAll" onclick='sendGCode("G28X0Y0Z0")'><b>Home All Axes</b></button>
+	</div>
+	<script type="text/javascript">
+
+		function update() {
+			$.get("inquiry", function(data) {
+				console.log(data);
+				if (data[data.length-1] == 'I') {
+					$("#bar").css("width", "100%");
+					$("#bar").css("background-color", "grey");
+					document.getElementById('bar').innerHTML = "Idle";
+				} else if (data[data.length-1] == 'P') {
+					var prc = data.split('\\')[0].slice(0, -1);
+					$("#bar").css("width", prc + "%");
+					$("#bar").css("background-color", "#4CAF50");
+					document.getElementById('bar').innerHTML = prc + "%";
+				}
+			});
+		}
+
+		function move(axis) {
+			sendGCode("G91");
+			sendGCode("G1 " + axis + document.getElementById("count").value);
+			sendGCode("G90");
+		}
+
+		function sendGCode(gcode) {
+			$.ajax({
+				url: "set?code=" + gcode,
+				cache: false
+			}).done(function(html) {
+				$('#gCodeLog').append("<br>" + gcode);
+				gCodeLog.scrollTop = gCodeLog.scrollHeight;
+			});
+		}
+
+		function eStop() {
+			$.ajax({
+					url: "set?cmd={P:X}",
+					cache: false
+			}).done(function(html) {
+				$('#gCodeLog').append("<br>" + ";--- SENT EMERGENCY STOP ---");
+				gCodeLog.scrollTop = gCodeLog.scrollHeight;
+			});
+		}
+
+		function gcodeHackery() {	
+			sendGCode("M28 weblog.txt; Starts logging to SD card.")
+		}
+
+	</script>
+</body>

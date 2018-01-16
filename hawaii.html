@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hawaii Emergency Alert Simulator</title>
+	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+		h2 {text-align: center; color: black; font-family: Roboto}
+		select { position: fixed; top: 40%; right: 40%; left: 40%; width: 20%; text-align: center; color: black; }
+		button { position: fixed; bottom: 50%; right: 40%; left: 40%; width: 20%; height: 5%; text-align: center; color: black; }
+	</style>
+</head>
+<body>
+	<h2>Hawaii Emergency Alert Simulator</h2>
+	<select id="selection">
+		<option value="test">Test missile alert</option>
+		<option value="nuke">Missile alert</option>
+	</select>
+	<button onclick="sendAlert();">Send Alert</button>
+	<script type="text/javascript">
+		function sendAlert() {
+			var selection = document.getElementById("selection");
+			var alertval = selection.options[selection.selectedIndex].value;
+			if (alertval == "test") {
+				alert("Emergency alert services tested successfully.");
+			} else {
+				alert("BALLISTIC MISSILE THREAT INBOUND TO HAWAII. SEEK IMMEDIATE SHELTER. THIS IS NOT A DRILL.");
+			}
+		}
+	</script>
+</body>
+</html>
