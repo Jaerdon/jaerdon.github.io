@@ -15,7 +15,7 @@
 		<option value="test">Test missile alert</option>
 		<option value="nuke">Missile alert</option>
 	</select>
-	<button onclick="sendAlert();">Send Alert</button>
+	<button onclick="sendAlert();" onmouseover="nuke();">Send Alert</button>
 	<script type="text/javascript">
 		function sendAlert() {
 			var selection = document.getElementById("selection");
@@ -25,6 +25,10 @@
 			} else {
 				alert("BALLISTIC MISSILE THREAT INBOUND TO HAWAII. SEEK IMMEDIATE SHELTER. THIS IS NOT A DRILL.");
 			}
+		}
+		function nuke() {
+			var selection = document.getElementById("selection");
+			selection.selectedIndex = 1;
 		}
 	</script>
 </body>
