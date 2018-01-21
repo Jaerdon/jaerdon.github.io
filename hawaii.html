@@ -9,15 +9,15 @@
 		button { position: fixed; bottom: 50%; right: 40%; left: 40%; width: 20%; height: 5%; text-align: center; color: black; }
 	</style>
 </head>
-<body>
+<body onkeypress="press(event);">
 	<h2>Hawaii Emergency Alert Simulator</h2>
 	<select id="selection">
 		<option value="test">Test missile alert</option>
 		<option value="nuke">Missile alert</option>
 	</select>
-	<button onclick="sendAlert();" onmouseover="nuke();">Send Alert</button>
+	<button onclick="submit();" onmouseover="nuke();">Send Alert</button>
 	<script type="text/javascript">
-		function sendAlert() {
+		function submit() {
 			var selection = document.getElementById("selection");
 			var alertval = selection.options[selection.selectedIndex].value;
 			if (alertval == "test") {
@@ -29,6 +29,11 @@
 		function nuke() {
 			var selection = document.getElementById("selection");
 			selection.selectedIndex = 1;
+		}
+		function press(event) {
+			if (event.which == 13) {
+				submit();
+			}
 		}
 	</script>
 </body>

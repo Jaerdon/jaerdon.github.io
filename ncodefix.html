@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width">
+    <title>NCodeFix</title>
+</head>
+<body>
+	<textarea id='input' rows=20 style="height: auto; width: 80%">Insert code here</textarea>
+	<br><button onclick='adjust()'><b>Adjust</b></button>
+	<script type="text/javascript">
+		function adjust() {
+			var input = document.getElementById('input').value.match(/[^\r\n]+/g);
+			var index = (input.length).length;
+            for (var line = 0; line < input.length; line++) {
+            	input[line] = "N" + "0".repeat(index - line.length) + line + " " + input[line];
+            }
+            document.getElementById('input').value = input.join("\r\n");
+		}
+	</script>
+</body>
+</html>
