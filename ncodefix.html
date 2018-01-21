@@ -12,7 +12,11 @@
 			var input = document.getElementById('input').value.match(/[^\r\n]+/g);
 			var index = (input.length).length;
             for (var line = 0; line < input.length; line++) {
-            	input[line] = "N" + "0".repeat(index - line.length) + line + " " + input[line];
+            	if (input[line].toLowerCase().charAt(0)=="n") {
+            		console.log("foo");
+            		input[line] = input[line].replace(/N[0-9]+/, "");
+            	}
+            	input[line] = ("N" + "0".repeat(index - line.length) + line + " " + input[line]).replace(/  /g, " ");
             }
             document.getElementById('input').value = input.join("\r\n");
 		}
