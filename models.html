@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8"/>
-	<title>Jordan Whiting</title>
+	<title>Jordan's Portfolio</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 </head>
 <body>
@@ -60,6 +60,17 @@
 				<a href="models/normalwheel.stl" class="btn btn-primary float-right" target="_blank">Download</a>
 			</div>
 		</div>
+		<div class="card mb-4">
+			<div id="PotatOS" onmouseover="setAlive(3)" onmouseleave="kill()"></div>
+			<div class="card-body">
+				<h5 class="card-title">PotatOS</h5>
+				<p class="card-text">Based on the model from Portal 2</p>
+			</div>
+			<div class="card-footer">
+				<a href="models/PotatOS.stl" class="btn btn-primary float-right" target="_blank">Download</a>
+			</div>
+		</div>
+		<div class="w-100 d-none d-sm-block d-md-none"></div>
 	</div>
 	<script src="https://cdn.rawgit.com/mrdoob/three.js/dev/build/three.js"></script>
 	<script src="https://cdn.rawgit.com/mrdoob/three.js/dev/examples/js/loaders/STLLoader.js"></script>
@@ -68,6 +79,7 @@
 		renderModel("boat2", false);
 		renderModel("ruler6", true);
 		renderModel("normalwheel", false);
+		renderModel("PotatOS", false);
 	</script>
 </body>
 

@@ -31,7 +31,7 @@ function renderModel(model, rotate) {
 	var renderer = new THREE.WebGLRenderer( {alpha: true } );
 	var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
 
-	renderer.setSize( 320, 300 );
+	renderer.setSize( 250, 250 );
 	renderer.setClearColor( 0x000000, 0 );
 
 	scene.add(light);
