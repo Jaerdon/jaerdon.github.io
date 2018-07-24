@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title>Jordan Whiting</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+</head>
+<body>
+	<nav class="site-header navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="d-flex flex-column flex-md-row justify-content-between">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<div class="navbar-nav">
+					<a class="navbar-brand" href="index.html"><img src="images/jw_logo.png"></a>
+					<a class="nav-item nav-link" href="index.html">Home</a>
+					<a class="nav-item nav-link" href="experiments.html">Projects</a>
+					<a class="nav-item nav-link" href="mailto:jordandavidwhiting@gmail.com?Subject=Hey%20Jordan!">Contact</a>
+					<a class="nav-item nav-link" href="resume.pdf" target="_blank">Resume</a>
+				</div>
+			</div>
+
+		</div>
+	</nav>
+	<br/>
+
+	<h1 class="container">Model Viewing Demo</h1><br/>
+
+	<div class="container card-deck mx-auto">
+		<div class="card mb-4">
+			<div id="boat2" onmouseover="setAlive(0)" onmouseleave="kill()"></div>
+			<div class="card-body">
+				<h5 class="card-title">Viking Ship</h5>
+				<p class="card-text">Concept for a tiny motorized viking longboat.</p>
+			</div>
+			<div class="card-footer">
+				<a href="models/boat2.stl" class="btn btn-primary float-right" target="_blank">Download</a>
+			</div>
+		</div>
+		<div class="card mb-4">
+			<div id="ruler6" onmouseover="setAlive(1)" onmouseleave="kill()"></div>
+			<div class="card-body">
+				<h5 class="card-title">VEX Ruler</h5>
+				<p class="card-text">Specialized ruler made for use with VEX Robotics equipment.</p>
+			</div>
+			<div class="card-footer">
+				<a href="models/ruler6.stl" class="btn btn-primary float-right" target="_blank">Download</a>
+			</div>
+		</div>
+		<div class="w-100 d-none d-sm-block d-md-none"></div>
+		<div class="card mb-4">
+			<div id="normalwheel" onmouseover="setAlive(2)" onmouseleave="kill()"></div>
+			<div class="card-body">
+				<h5 class="card-title">Standard Wheel</h5>
+				<p class="card-text">Wheel made for a mousetrap vehicles.</p>
+			</div>
+			<div class="card-footer">
+				<a href="models/normalwheel.stl" class="btn btn-primary float-right" target="_blank">Download</a>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.rawgit.com/mrdoob/three.js/dev/build/three.js"></script>
+	<script src="https://cdn.rawgit.com/mrdoob/three.js/dev/examples/js/loaders/STLLoader.js"></script>
+	<script src="js/modelviewer.js"></script>
+	<script type="text/javascript">
+		renderModel("boat2", false);
+		renderModel("ruler6", true);
+		renderModel("normalwheel", false);
+	</script>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="	sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+</html>

@@ -1,31 +1,56 @@
 <!DOCTYPE html>
-<html>
-<meta name="viewport" content="width=device-width">
+<html lang="en">
 <head>
-	<title>Jaerdon Null</title>
-	<style type="text/css">
-		h1 { text-align: center; font-family: Ubuntu; }
-		h3 { text-align: center; font-family: Ubuntu; font-style: italic; font-weight: normal; }
-		dt { text-align: center; font-family: Roboto; font-size: 24px; }
-		dd { text-align: center; font-family: Roboto; padding: 0 2em 0 0; }
-		a  { text-decoration: none; color: #D05860; }
-	</style>
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+	<meta charset="utf-8"/>
+	<title>Jordan Whiting</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
 </head>
-<body>
-	<h1>Hey, welcome to my site!</h1>
-	<h3>There's not much here right now, maybe you're looking for some of my projects?</h3>
-	<br><br>
-	<dl>
-		<dt><a href="beepboop.html">Beep Boop</a></dt>
-		<dd>Markov-Chain based bot used to generate absurd sentences.</dd><br>
-		<dt><a href="printui.html">PrintUI 3D</a></dt>
-		<dd>3D Printer UI based around the MPSM (Currently in Beta)</dd><br>
-		<dt><a href="ncodefix.html">NCodeFix</a></dt>
-		<dd>For use with CNC programs that require number codes at the beginning of a line.</dd><br>
-		<dt><a href="hawaii.html">Hawaii Emergency Alert Services</a></dt>
-		<dd>This is a joke.</dd><br>
-	</dl>
+<body onload="randomizeFooter()">
+	<nav class="site-header navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="d-flex flex-column flex-md-row justify-content-between">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<div class="navbar-nav">
+					<a class="navbar-brand" href="#"><img src="images/jw_logo.png"></a>
+					<a class="nav-item nav-link" href="index.html">Home</a>
+					<a class="nav-item nav-link" href="experiments.html">Projects</a>
+					<a class="nav-item nav-link" href="mailto:jordandavidwhiting@gmail.com?Subject=Hey%20Jordan!">Contact</a>
+					<a class="nav-item nav-link" href="resume.pdf" target="_blank">Resume</a>
+				</div>
+			</div>
+
+		</div>
+	</nav>
+	<br/>
+	<div class="vertical-center">
+		<div class="jumbotron container">
+			<div class="row">
+				<div class="container col-md-6">
+					<h1 class="display-3">Hi, I'm<br/>Jordan Whiting</h1><br/>
+					<p>I'm Jordan, an engineering student based in southern California.</p>
+				</div>
+				<div class="container col-md-4">
+					<h4 class="display-5">TL<b>;</b>DR</h4>
+					<p>Just some guy who likes to build stuff.</p>
+					<p>Primarily, I work in programming, robotics, 3d printing, and automated manufacturing. The majority of my projects revolve around experimenting with various technologies and/or trying to improve the experience of people using those technologies.</p>
+					<p><a class="btn btn-primary btn-lg" href="experiments.html" role="button">Why don't you <i>take a look</i>?</a></p>
+				</div>
+			</div>
+		</div>	
+	</div>
+
+	<br/><br/>
+
+	<!--<div class="card container small text-center" id="foot">2018 - Jordan Whiting</div>
+	<script src="js/home.js"></script>-->
+	
 </body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="	sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
 </html>
