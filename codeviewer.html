@@ -7,9 +7,9 @@
 </head>
 <body>
 	<div class="row text-light bg-dark">
-		<div class="col-1 text-right">
+		<!--<div class="col-1 text-right">
 			<p id="lines" class="text-light"></p>
-		</div>
+		</div>-->
 		<div class="col-md-6 text-left">
 			<p id="code" class="text-light"></p>
 		</div>
@@ -26,7 +26,7 @@
 		        	lines.push((i+1) + ".");
 		        	code.push(result[i]);
 		        }
-		        $('#lines').html(lines.join('<br/>'));
+		        //$('#lines').html(lines.join('<br/>'));
 		        $('#code').append(code.join('<br/>'));
 	        }});
 		});
