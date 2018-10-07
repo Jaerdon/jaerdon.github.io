@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+	<meta charset="utf-8"/>
+	<title>Slicer Project Explained</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+	<style type="text/css">
+		p { font-size: 20px;}
+		img {max-width: 100%; }
+	</style>
+</head>
+<body>
+	<nav class="site-header navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="d-flex flex-column flex-md-row justify-content-between">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<div class="navbar-nav">
+					<a class="navbar-brand" href="index"><img src="images/jw_logo.png"></a>
+					<a class="nav-item nav-link" href="index">Home</a>
+					<a class="nav-item nav-link" href="experiments">Projects</a>
+					<a class="nav-item nav-link" href="mailto:j@jaerdon.com?Subject=Hey%20Jordan!">Contact</a>
+				</div>
+			</div>
+
+		</div>
+	</nav>
+	<br/>
+
+	<h1 class="display-4 text-center">The Slicer Project</h1><br/>
+	
+	<div class="container text-center" style="width:45%;">
+		<img class="card-img-top" src="images/thumb_slicer.png">
+	</div>
+	<br/>
+	<div class="card container mb-4">
+		<h1 class="card-title container"><br/>How does it work?</h1>
+		<div class="card-body">
+			<h3>Understanding STL Files</h3>
+			<p>In order to turn a CAD model into something that a 3d printer can use, the first thing that the slicer does is read the information from an <a href="https://en.wikipedia.org/wiki/STL_(file_format)">.stl</a> file, which is effectively just a collection of triangles in 3d space. These files come in one of two flavors: ASCII or binary. While the format differs slightly, they are effectively the same.</p>
+			<p>Both styles start out with a header: In binary this is an 80-byte header that might include various information such as the name and credits, but is generally not relevant. This is then followed by the amount of triangles in the model, and then the list of triangles. ASCII files start with the word <code>solid</code> followed by the name of the model, and then list each triangle.</p>
+			<p>The triangles are in a .stl file follow the same general format: Normal Vector, Vertex 1, Vertex 2, & Vertex 3. The only real difference is the extra padding on the ASCII format and the encoding of the two. </p>
+			<div class="row text-center" style="max-width: 100%">
+				<div class="container col-md-6 text-center">
+					<img src="images/binary_stl_triangles.png"><br/>
+					Triangle in binary format (displayed as Hex)
+				</div>
+				<div class="container col-md-6 text-center">
+					<img src="images/ascii_stl_triangles.png"><br/>
+					Triangle in ASCII format
+				</div>
+			</div><br/>
+			<p style="font-size: 12px;" class="float-right">It should be noted that there are an extra two bytes reserved for metadata following each triangle in binary format.</p><br/><br/>
+
+			<p>Once the program has read the data from the .stl file and stored it, it is then time for the actual math.</p><br/>
+
+			<h3>Slicing the Model</h3>
+			<div class="row" style="max-width: 100%">
+				<div class="container col-md-8">
+					<p>Now that the software has the triangles, it needs to determine what parts of each triangle need to be on each layer. To do this, the program can simply iterates through the amount of layers that we want, moving upwards in the model by a specified amount of space on the Z-axis.</p>
+					<p>For each of the triangles, the software needs to find the points that intersect an XY plane at the given Z-axis height. To do this, the program will create a "line" between each of the points that would intersect an XY plane at that Z value, and simply solve for X and Y with a given Z.</p>
+				</div>
+				<div class="container col-md-4">
+					<img src="images/slicing_demo_layers.png"><br/>
+				</div>
+			</div><div class="text-center">
+			<img src="images/slicing_demo_zint.png"></div><br/>
+
+			<p>Each of these lines are then added to a list of lines for each layer. The software can then take these lines and create polylines from them.</p>
+			
+			<h4>Polyline Creation</h4>
+
+			<p>Creating polylines is rather simple. The software just iterates through the set of lines, and create polylines out of the lines where one end is equal to the beginning of another line. These do not need to be enclosed.</p><br/>
+			<div class="text-center">
+			<img src="images/polylines_unsorted.png"></div><br/>
+
+			<h4>Infill<h4>
+
+			<p>To create the infill for the model, we're simply creating a grid. There are a multitude of other styles of infill that could be used, however, for this project a simple adjustable grid was good enough.</p>
+
+			<p>Our grid is created by iterating over the x and y values within the the object's total area. Points that intersect the polylines are drawn across the polyline to the next point it intersects within its boundaries.</p>
+
+			<div class="text-center">
+			<img src="images/polylines_filled.png"></div><br/>
+
+			<br/><h3>G-code Generation</h3>
+
+			<p>G-code is a type of numerical control programming language which is used to tell machines exactly what toolpaths to take for a desired output. The flavor of G-code we're using for this is the same flavor used by <a href="https://reprap.org/wiki/G-code">RepRap</a>, which is the firmware that the 3d printer this was made for uses. This will be how the results of the slicing software is exported.</p>
+			
+			<p>The first thing we need to do is make sure the machine knows what settings it should print with. For this we can use the following codes:</p>
+<pre><code>
+T0;  Select Tool 0
+G21; SI units (millimeters)
+G90; Absolute positions
+M82; Absolute extrusions
+M104 S200; Set temperature to 200 degrees Celsius
+G28; Home all axes
+</code></pre><br/>
+			<p>There are many, many, more codes that can be used, and do tasks such as setting fan speeds, setting bed temperature, auto-leveling a bed, printing messages to a display, etc. We don't need those right now, but I encourage you to take a look at them on the <a href="https://reprap.org/">RepRap wiki</a>.</p><br/>
+
+			<p>The next thing we are going to do is add the G-code for each line in each layer. To do this, we simply iterate over every polygon and its infill and add G0 and G1 codes accordingly. The result will be a long series of codes that looks very similar to the following example:</p>
+<pre><code>
+G0 X-4.2749 Y-13.8917 F9000
+G1 X-5.2099 Y-13.7070 E0.9531283 F1800
+G1 X-9.1711 Y-11.0558 E4.766521
+G1 X-9.9275 Y-10.5496 E0.9101753
+</code></pre><br/>
+			
+			<p>We're using F9000 for G0 (free movement, not extruding) commands, which will attempt to move the printer head at 150mm/s. While the printer is actually extruding (G1), we're only going to use a 5th of that speed, at 30mm/s. These values can be adjusted to however fast one wants to print. Be warned, however, as this can affect the quality of the print. The E value, which is the amount of filament to extrude, is calculated using the distance between the previous point and the point the print head is intended to travel to.</p>
+
+			<p>At the end of our G-code, we're going to want to add some commands such as <code>M107</code>, which will turn off the fan, and <code>M104 S0</code>, which will turn off the hot-end. One can experiment around with these as one pleases, and see how results change.</p>
+
+			<p>The G-code file generated by the program can simply be put on an SD Card, USB drive, or whatever type of storage is preferred for the printer being used.</p>
+
+
+		</div>	
+		
+	</div>
+	<div class="card container mb-4">
+		<div class="card-body text-center">
+			<p class="card-text">The code for this project is available on my <a href="https://github.com/Jaerdon/Slicer">GitHub</a></p>
+		</div>
+	</div>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>	
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="	sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+</html>
