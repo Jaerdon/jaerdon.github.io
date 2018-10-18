@@ -45,37 +45,49 @@
 			<p>The triangles are in a .stl file follow the same general format: Normal Vector, Vertex 1, Vertex 2, & Vertex 3. The only real difference is the extra padding on the ASCII format and the encoding of the two. </p>
 			<div class="row text-center" style="max-width: 100%">
 				<div class="container col-md-6 text-center">
-					<img src="images/binary_stl_triangles.png"><br/>
+					<img src="images/slicer/binary_stl_triangles.png"><br/>
 					Triangle in binary format (displayed as Hex)
 				</div>
 				<div class="container col-md-6 text-center">
-					<img src="images/ascii_stl_triangles.png"><br/>
+					<img src="images/slicer/ascii_stl_triangles.png"><br/>
 					Triangle in ASCII format
 				</div>
 			</div><br/>
 			<p style="font-size: 12px;" class="float-right">It should be noted that there are an extra two bytes reserved for metadata following each triangle in binary format.</p><br/><br/>
 
+			<p>For this, let's assume the model being used is a generic Utah teapot, I'm using <a href="https://www.thingiverse.com/thing:852078">this one</a> by zzubnik on Thingiverse.</p>
+			<div class="text-center">
+				<img src="images/slicer/model.png">
+				<p style="font-size: 12px;">Rendered in Autodesk Fusion 360</p>
+			</div><br/>
+
 			<p>Once the program has read the data from the .stl file and stored it, it is then time for the actual math.</p><br/>
 
 			<h3>Slicing the Model</h3>
-			<div class="row" style="max-width: 100%">
-				<div class="container col-md-8">
+			
+			<div class="row">
+				<div class="col-md-8"><br/>
 					<p>Now that the software has the triangles, it needs to determine what parts of each triangle need to be on each layer. To do this, the program can simply iterates through the amount of layers that we want, moving upwards in the model by a specified amount of space on the Z-axis.</p>
-					<p>For each of the triangles, the software needs to find the points that intersect an XY plane at the given Z-axis height. To do this, the program will create a "line" between each of the points that would intersect an XY plane at that Z value, and simply solve for X and Y with a given Z.</p>
 				</div>
-				<div class="container col-md-4">
-					<img src="images/slicing_demo_layers.png"><br/>
+				<div class="col-md-4 text-center">
+					<img src="images/slicer/model_outline.png"><br/>
 				</div>
-			</div><div class="text-center">
-			<img src="images/slicing_demo_zint.png"></div><br/>
+			</div><br/>			
 
-			<p>Each of these lines are then added to a list of lines for each layer. The software can then take these lines and create polylines from them.</p>
+			<p>For each of the triangles, the software needs to find the points that intersect an XY plane at the given Z-axis height and create a line between them. To do this, the program will create a "line" between each of the points that would intersect an XY plane at that Z value, and simply solve for X and Y with a given Z.</p>
+			</div>
+			<div class="text-center">
+				<img src="images/slicer/slicing_demo_zint.png">
+			</div>
+			<p>The values are then combined into a line segment.</p><br/>
+
+			<br/><p>Each of these segments are then added to a list of line segments for each layer. The software can then take these lines and create polylines from them.</p>
 			
 			<h4>Polyline Creation</h4>
 
 			<p>Creating polylines is rather simple. The software just iterates through the set of lines, and create polylines out of the lines where one end is equal to the beginning of another line. These do not need to be enclosed.</p><br/>
 			<div class="text-center">
-			<img src="images/polylines_unsorted.png"></div><br/>
+			<img src="images/slicer/model_slice_outline.png"></div><br/>
 
 			<h4>Infill<h4>
 
@@ -84,7 +96,7 @@
 			<p>Our grid is created by iterating over the x and y values within the the object's total area. Points that intersect the polylines are drawn across the polyline to the next point it intersects within its boundaries.</p>
 
 			<div class="text-center">
-			<img src="images/polylines_filled.png"></div><br/>
+			<img src="images/slicer/model_slice_outline_infill.png"></div><br/>
 
 			<br/><h3>G-code Generation</h3>
 
@@ -101,6 +113,11 @@ G28; Home all axes
 </code></pre><br/>
 			<p>There are many, many, more codes that can be used, and do tasks such as setting fan speeds, setting bed temperature, auto-leveling a bed, printing messages to a display, etc. We don't need those right now, but I encourage you to take a look at them on the <a href="https://reprap.org/">RepRap wiki</a>.</p><br/>
 
+			<div class="text-center">
+				<img src="images/slicer/grid.png" style="width:70%;">
+				<p style="font-size: 12px;">Each outside wall for each layer in the model, visualized.</p>
+			</div><br/>
+
 			<p>The next thing we are going to do is add the G-code for each line in each layer. To do this, we simply iterate over every polygon and its infill and add G0 and G1 codes accordingly. The result will be a long series of codes that looks very similar to the following example:</p>
 <pre><code>
 G0 X-4.2749 Y-13.8917 F9000
@@ -115,13 +132,19 @@ G1 X-9.9275 Y-10.5496 E0.9101753
 
 			<p>The G-code file generated by the program can simply be put on an SD Card, USB drive, or whatever type of storage is preferred for the printer being used.</p>
 
+			<div class="text-center">
+				<img src="images/slicer/simulated.png">
+				<p class="float-right" style="font-size: 12px;">Simulation of what the GCode would print. (Rendered using Cura's GCode visualizer)</p>
+			</div><br/>
+
+			
 
 		</div>	
 		
 	</div>
 	<div class="card container mb-4">
 		<div class="card-body text-center">
-			<p class="card-text">The code for this project is available on my <a href="https://github.com/Jaerdon/Slicer">GitHub</a></p>
+			<p class="card-text">The code and binaries for this project are available on my <a href="https://github.com/Jaerdon/Slicer">GitHub</a></p>
 		</div>
 	</div>
 
