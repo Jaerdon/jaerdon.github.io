@@ -3,11 +3,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <head>
 	<meta charset="utf-8"/>
-	<title>Slicer Project Explained</title>
+	<title>The Slicer Project</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 	<style type="text/css">
-		p { font-size: 20px;}
+		p { font-size: 18px;}
 		img {max-width: 100%; }
+
+		.col {
+			border-right: 1px solid #999;
+		}
+		.arg {
+			color: #999;
+		}
+		.file {
+			color: #CCC;
+		}
+		.note {
+			align-content: right;
+			float: right;
+			font-style: italic;
+			color: #777;
+		}
+		.def {
+			float: right;
+			color: #888;
+		}
 	</style>
 </head>
 <body>
@@ -32,121 +52,270 @@
 
 	<h1 class="display-4 text-center">The Slicer Project</h1><br/>
 	
-	<div class="container text-center" style="width:45%;">
-		<img class="card-img-top" src="images/thumb_slicer.png">
+	<div class="container text-center" style="max-width: 48%">
+		<img class="jumbotron" src="images/thumb_slicer.png" style="padding: 0;">
 	</div>
-	<br/>
+
+	<div class="container jumbotron card text-center" style="padding: 0; background: white;">
+		<div class="row card-body" style="font-size: 15px;">
+				<div class="col">
+					<b><a href="#intro">Introduction</a></b>
+				</div>
+				<div class="col">
+					<b><a href="#using">Usage</a></b>
+				</div>
+				<div class="col">
+					<b><a href="#docs">How it Works</a></b>
+				</div>
+				<div class="col">
+					<b><a href="https://github.com/Jaerdon/Slicer" target="_blank">Source</a></b>
+				</div>
+				<div class="col">
+					<b><a href="#credits">Acknowledgments</a></b>
+				</div>
+				<div class="col" style="border-right: none;">
+					<b><a href="https://github.com/Jaerdon/Slicer/releases" target="_blank">Downloads</a></b>
+				</div>
+		</div>
+	</div>
+
 	<div class="card container mb-4">
-		<h1 class="card-title container"><br/>How does it work?</h1>
+		<h1 class="card-title container"><br/><a name="intro">Introduction</a></h1>
+		<div class="card-body">
+			<h3>What is a Slicer?</h3>
+			<p>A slicer is a piece of software that takes a 3D model and turns it into machine code that can be read and executed by an additive manufacturing machine such as a 3D printer. Examples of modern slicing programs include Cura, Simplify3D, and Slic3r, among others.
+			The goal of a slicer is to create specific G-Code that can be read by a numerically controlled machine such as a FDM (Fused Deposition Modeling) printer, the generic plastic extrusion type of 3D printer this project is designed around. The standard input format for slicers in general is .stl files, which stands for stereo-lithography, one of the earliest forms of 3D printing. These files are a collection of triangles defined by their vertices in 3D space. 
+			</p><br/>
+
+			<h3>Features</h3>
+			<p>The Slicer Project can slice any .stl file that follows the correct STL format, this includes both ASCII and binary .stl files. The slicer currently has two output options, G-Code for FDM printers, and a series of vectors for each layer that can be stacked topographically (ex. laser cutting height maps). The slicer includes a set of pre-processing features that are applied before it slices the model. These include:</p>
+			<ul>
+				<li>Rotation about X, Y, and Z axes</li>
+				<li>Translation over X, Y, and Z axes</li>
+			</ul>
+			<p>The slicer also has many options for slicing settings. These include the following:</p>
+			<ul>
+				<li>Height of each layer</li>
+				<li>Temperature of the printer’s hot-end</li>
+				<li>Temperature of the printer’s print bed (if applicable)</li>
+				<li>Percent of the inside of the model to fill with material</li>
+				<li>Length of the print bed in X and Y directions</li>
+			</ul>
+			<p>With the exception of the layer height, the above settings are not necessary if slicing with vector files as the selected output. </p>
+		</div>
+	</div>
+
+	<div class="card container mb-4">
+		<h1 class="card-title container"><br/><a name="using">Usage</a></h1>
+		<div class="card-body">
+			<p>The Slicer Project currently has no graphical interface, and can only be run from the command line. The format when running from the command line is as follows:</p>
+			<div class="text-center"><kbd><b>slicer.exe</b> [<span class="file">filename</span>] [<code>option1</code> <span class="arg">argument1</span>] … [<code>optionN</code> <span class="arg">argumentN</span>]</kbd></div>
+			<p><br/>The command line arguments for this program are the option followed by the value being set. For instance, if a user wanted to move the model along the x-axis, they would append <code>-tX</code> to the command, followed by the number of millimeters they wanted to move the model, like so:</p>
+			<div class="text-center"><kbd><b>slicer.exe</b> <span class="file">examplefile.stl</span> <code>-tX</code> <span class="arg">20</span></kbd>
+			<p><br/>Or alternatively:</p>
+			<kbd><b>slicer.exe</b> <span class="file">examplefile.stl</span> <code>--translateX</code> <span class="arg">20</span></kbd></div>
+			<p><br/>Any options that are not explicitly specified will use whatever default option is listed. </p>
+			<h4><br/>Examples:</h4>
+			<div class="container" style="max-width: 75%">
+				<kbd><b>slicer.exe</b> <span class="file">cube.stl</span> <code>-rX</code> <span class="arg">90 <code>-l</code> <span class="arg">0.175</span> <code>-t</code> <span class="arg">210</span></kbd><br/>
+				<div class="note">Rotates “cube.stl” by 90, then slices at 0.175mm layer height for a 210°C hot-end.</div>
+				<br/>
+				<kbd><b>slicer.exe</b> <span class="file">dinosaur.stl</span> <code>-tZ</code> <span class="arg">10</span> <code>-f</code> <span class="arg">SVG</span></kbd><br/>
+				<div class="note">Moves “dinosaur.stl” up 10mm on the Z axis, then slices to a series of vectorized layers.</div>
+				<br/>
+				<kbd><b>slicer.exe</b> <span class="file">penguin.stl</span> <code>-i</code> <span class="arg">50</span> <code>-t</code> <span class="arg">205</span> <code>-b</code> <span class="arg">55</span></kbd><br/>
+				<div class="note">Slices “penguin.stl” with 50% infill for a 205°C hot-end and a 55°C heated print bed.</div>
+			</div>
+
+			<br/>
+
+			<div class="text-center">
+				<br/><img src="images/slicer/cmd.png" style="border-radius: 10px;">
+			</div>
+
+			<p><br/>The full list of command-line options for the slicer are the following:</p>
+			<table class="container table" style="max-width: 80%">
+				<thead>
+					<tr style="">
+						<th scope="col">Option</th>
+						<th scope="col">Long Option</th>
+						<th scope="col">Description</th>
+						<th scope="col">Default</th>
+					</tr>
+				</thead>
+				<tbody>
+				    <tr>
+						<td scope="row"><code>-tX</code> [<span class="arg">n</span>]</td>
+						<td><code>--translateX</code>  [<span class="arg">n</span>]</td>
+						<td>Move model along x axis <span class="arg">n</span> millimeters</td>
+						<td><span class="def">0.0</span></td>
+				    </tr>
+				    <tr>
+						<td scope="row"><code>-tY</code> [<span class="arg">n</span>]</td>
+						<td><code>--translateY</code>  [<span class="arg">n</span>]</td>
+						<td>Move model along Y axis <span class="arg">n</span> millimeters</td>
+						<td><span class="def">0.0</span></td>
+				    </tr>
+				    <tr>
+						<td scope="row"><code>-tZ</code> [<span class="arg">n</span>]</td>
+						<td><code>--translateZ</code>  [<span class="arg">n</span>]</td>
+						<td>Move model along Z axis <span class="arg">n</span> millimeters</td>
+						<td><span class="def">0.0</span></td>
+				    </tr>
+
+				    <tr>
+						<td scope="row"><code>-rX</code> [<span class="arg">n</span>]</td>
+						<td><code>--rotateX</code>  [<span class="arg">n</span>]</td>
+						<td>Rotate model around x axis by <span class="arg">n</span> radians</td>
+						<td><span class="def">0.0</span></td>
+				    </tr>
+				    <tr>
+						<td scope="row"><code>-rY</code> [<span class="arg">n</span>]</td>
+						<td><code>--rotateY</code>  [<span class="arg">n</span>]</td>
+						<td>Rotate model around Y axis by <span class="arg">n</span> radians</td>
+						<td><span class="def">0.0</span></td>
+				    </tr>
+				    <tr>
+						<td scope="row"><code>-rZ</code> [<span class="arg">n</span>]</td>
+						<td><code>--rotateZ</code>  [<span class="arg">n</span>]</td>
+						<td>Rotate model around Z axis by <span class="arg">n</span> radians</td>
+						<td><span class="def">0.0</span></td>
+				    </tr>
+
+				    <tr>
+						<td scope="row"><code>-s</code></td>
+						<td><code>--swap</code></td>
+						<td>Swap rotation and translation order</td>
+						<td><span class="def"></span></td>
+				    </tr>
+
+				    <tr>
+						<td scope="row"><code>-l</code> [<span class="arg">n</span>]</td>
+						<td><code>--layerheight</code>  [<span class="arg">n</span>]</td>
+						<td>Set layer height to <span class="arg">n</span></td>
+						<td><span class="def">0.2</span></td>
+				    </tr>
+
+				    <tr>
+						<td scope="row"><code>-t</code> [<span class="arg">n</span>]</td>
+						<td><code>--temp</code>  [<span class="arg">n</span>]</td>
+						<td>Set hot-end temperature to <span class="arg">n</span> degrees (Celsius) </td>
+						<td><span class="def">200</span></td>
+				    </tr>
+
+				    <tr>
+						<td scope="row"><code>-b</code> [<span class="arg">n</span>]</td>
+						<td><code>--bed</code>  [<span class="arg">n</span>]</td>
+						<td>Set bed temperature to <span class="arg">n</span> degrees (Celsius) </td>
+						<td><span class="def">60</span></td>
+				    </tr>
+				    <tr>
+						<td scope="row"><code>-i</code> [<span class="arg">n</span>]</td>
+						<td><code>--infill</code>  [<span class="arg">n</span>]</td>
+						<td>Set infill percentage to <span class="arg">n</span>% </td>
+						<td><span class="def">15</span></td>
+				    </tr>
+				    <tr>
+						<td scope="row"><code>-x</code> [<span class="arg">n</span>]</td>
+						<td><code>--xLength</code>  [<span class="arg">n</span>]</td>
+						<td>Define bed X length as <span class="arg">n</span> millimeters</td>
+						<td><span class="def">120</span></td>
+				    </tr>
+				    <tr>
+						<td scope="row"><code>-y</code> [<span class="arg">n</span>]</td>
+						<td><code>--yLength</code>  [<span class="arg">n</span>]</td>
+						<td>Define bed Y length as <span class="arg">n</span> millimeters</td>
+						<td><span class="def">120</span></td>
+				    </tr>
+				    <tr>
+						<td scope="row"><code>-f</code> [<span class="arg">f</span>]</td>
+						<td><code>--format</code>  [<span class="arg">f</span>]</td>
+						<td>Change export format type (<span class="arg">GCode</span>, <span class="arg">SVG</span>)</td>
+						<td><span class="def">GCode</span></td>
+				    </tr>
+				    <tr>
+						<td scope="row"><code>-h</code></td>
+						<td><code>--help</code></td>
+						<td>Display help dialogue</td>
+						<td><span class="def"></span></td>
+				    </tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="card container mb-4">
+		<h1 class="card-title container"><br/><a name="docs">How it Works</a></h1>
 		<div class="card-body">
 			<h3>Understanding STL Files</h3>
-			<p>In order to turn a CAD model into something that a 3d printer can use, the first thing that the slicer does is read the information from an <a href="https://en.wikipedia.org/wiki/STL_(file_format)">.stl</a> file, which is effectively just a collection of triangles in 3d space. These files come in one of two flavors: ASCII or binary. While the format differs slightly, they are effectively the same.</p>
-			<p>Both styles start out with a header: In binary this is an 80-byte header that might include various information such as the name and credits, but is generally not relevant. This is then followed by the amount of triangles in the model, and then the list of triangles. ASCII files start with the word <code>solid</code> followed by the name of the model, and then list each triangle.</p>
-			<p>The triangles are in a .stl file follow the same general format: Normal Vector, Vertex 1, Vertex 2, & Vertex 3. The only real difference is the extra padding on the ASCII format and the encoding of the two. </p>
-			<div class="row text-center" style="max-width: 100%">
-				<div class="container col-md-6 text-center">
-					<img src="images/slicer/binary_stl_triangles.png"><br/>
-					Triangle in binary format (displayed as Hex)
-				</div>
-				<div class="container col-md-6 text-center">
-					<img src="images/slicer/ascii_stl_triangles.png"><br/>
-					Triangle in ASCII format
-				</div>
-			</div><br/>
-			<p style="font-size: 12px;" class="float-right">It should be noted that there are an extra two bytes reserved for metadata following each triangle in binary format.</p><br/><br/>
-
-			<p>For this, let's assume the model being used is a generic Utah teapot, I'm using <a href="https://www.thingiverse.com/thing:852078">this one</a> by zzubnik on Thingiverse.</p>
+			<p>In order to turn a CAD model into something that a 3D printer can use, the first thing that the slicer does is read the information from an .stl file, which is effectively a collection of triangles in 3D space. These files come in one of two flavors: ASCII or binary. While the format differs slightly, they are effectively the same. Both styles start out with a header: In binary, this is an 80-byte header that might include various information such as the name and credits, but is generally not relevant. This is then followed by the amount of triangles in the model, and then the list of triangles. ASCII files start with the word solid followed by the name of the model, and then list each triangle. The triangles are in a .stl file follow the same general format: Normal Vector, Vertex 1, Vertex 2, & Vertex 3. The only real difference is the extra padding on the ASCII format and the encoding of the two.</p>
 			<div class="text-center">
-				<img src="images/slicer/model.png">
-				<p style="font-size: 12px;">Rendered in Autodesk Fusion 360</p>
-			</div><br/>
-
-			<p>Once the program has read the data from the .stl file and stored it, it is then time for the actual math.</p><br/>
-
-			<h3>Slicing the Model</h3>
-			
-			<div class="row">
-				<div class="col-md-8"><br/>
-					<p>Now that the software has the triangles, it needs to determine what parts of each triangle need to be on each layer. To do this, the program can simply iterates through the amount of layers that we want, moving upwards in the model by a specified amount of space on the Z-axis.</p>
-				</div>
-				<div class="col-md-4 text-center">
-					<img src="images/slicer/model_outline.png"><br/>
-				</div>
-			</div><br/>			
-
-			<p>For each of the triangles, the software needs to find the points that intersect an XY plane at the given Z-axis height and create a line between them. To do this, the program will create a "line" between each of the points that would intersect an XY plane at that Z value, and simply solve for X and Y with a given Z.</p>
+				<img src="images/slicer/stl_formats_compared.png">
 			</div>
+			<p>It should be noted that there are an extra two bytes reserved for metadata following each triangle in binary format.</p>
+			<h3><br/>Example Model</h3>
+			<p>For this, the model being used is a generic Utah teapot, such as <a href="https://www.thingiverse.com/thing:852078">this one</a> by zzubnik on Thingiverse, which is in the public domain.</p>
+			<div class="text-center">
+				<br/><img src="images/slicer/model.png">
+			</div>
+			<h3><br/>Slicing the Model</h3>
+			<p>Now that the software has the triangles, it needs to determine what parts of each triangle need to be on each layer. To do this, the program iterates through the amount of layers wanted, moving upwards in the model by a specified amount of space on the Z-axis.</p>
+			<div class="text-center">
+				<img src="images/slicer/model_outline.png">
+			</div>
+			<p><br/>For each of the triangles, the software needs to find the points that intersect an XY plane at the given Z-axis height and create a line between them. To do this, the program will create a "line" between each of the points that would intersect an XY plane at that Z value, and solve for X and Y with a given Z.</p>
 			<div class="text-center">
 				<img src="images/slicer/slicing_demo_zint.png">
 			</div>
-			<p>The values are then combined into a line segment.</p><br/>
-
-			<br/><p>Each of these segments are then added to a list of line segments for each layer. The software can then take these lines and create polylines from them.</p>
-			
-			<h4>Polyline Creation</h4>
-
-			<p>Creating polylines is rather simple. The software just iterates through the set of lines, and create polylines out of the lines where one end is equal to the beginning of another line. These do not need to be enclosed.</p><br/>
+			<p><br/>The values are then combined into a line segment.</p>
+			<p>Each of these segments are then added to a list of line segments for each layer. The software can then take these lines and create polylines from them.</p>
+			<h3><br/>Polyline Creation</h3>
+			<p>Creating polylines is rather simple. The software iterates through the set of lines, and creates polylines out of the segments where one end is equal to the beginning of another line. These do not need to be enclosed.</p>
 			<div class="text-center">
-			<img src="images/slicer/model_slice_outline.png"></div><br/>
-
-			<h4>Infill<h4>
-
-			<p>To create the infill for the model, we're simply creating a grid. There are a multitude of other styles of infill that could be used, however, for this project a simple adjustable grid was good enough.</p>
-
-			<p>Our grid is created by iterating over the x and y values within the the object's total area. Points that intersect the polylines are drawn across the polyline to the next point it intersects within its boundaries.</p>
-
-			<div class="text-center">
-			<img src="images/slicer/model_slice_outline_infill.png"></div><br/>
-
-			<br/><h3>G-code Generation</h3>
-
-			<p>G-code is a type of numerical control programming language which is used to tell machines exactly what toolpaths to take for a desired output. The flavor of G-code we're using for this is the same flavor used by <a href="https://reprap.org/wiki/G-code">RepRap</a>, which is the firmware that the 3d printer this was made for uses. This will be how the results of the slicing software is exported.</p>
-			
-			<p>The first thing we need to do is make sure the machine knows what settings it should print with. For this we can use the following codes:</p>
-<pre><code>
+				<img src="images/slicer/model_slice_outline.png">
+			</div>
+			<h3><br/>Infill</h3>
+			<p>To create the infill for the model, the program creates a grid of line segments. There are a multitude of other styles of infill that could be used, however, for this project an adjustable grid was good enough.<br/>The grid is created by iterating over the x and y values within the the object's total area. Points that intersect the polylines are drawn across the polyline to the next point it intersects within its boundaries.</p>
+			<h3><br/>G-code Generation</h3>
+			<p>G-code is a type of numerical control programming language used to tell machines exactly which toolpaths to take for a desired output. The flavor of G-code being using for this is the same flavor used by <a href="https://reprap.org/wiki/G-code">RepRap</a>, which is the firmware that the 3d printer this was made for uses. This will be how the results of the slicing software is exported.</p>
+			<p>The first thing the slicer needs to do is guarantee the machine knows what settings it should print with. For this the following codes are used:</p><pre class="container"><code>
 T0;  Select Tool 0
 G21; SI units (millimeters)
 G90; Absolute positions
 M82; Absolute extrusions
 M104 S200; Set temperature to 200 degrees Celsius
-G28; Home all axes
-</code></pre><br/>
-			<p>There are many, many, more codes that can be used, and do tasks such as setting fan speeds, setting bed temperature, auto-leveling a bed, printing messages to a display, etc. We don't need those right now, but I encourage you to take a look at them on the <a href="https://reprap.org/">RepRap wiki</a>.</p><br/>
-
+G28; Home all axes</code></pre><br/>
+			<p>There are several more codes that can be used, and do tasks such as setting fan speeds, setting bed temperature, auto-leveling a bed, printing messages to a display, etc., but are not needed as of now. To see more of these, please take a look at them on the <a href="https://reprap.org/">RepRap wiki</a>.</p>
 			<div class="text-center">
-				<img src="images/slicer/grid.png" style="width:70%;">
-				<p style="font-size: 12px;">Each outside wall for each layer in the model, visualized.</p>
-			</div><br/>
-
-			<p>The next thing we are going to do is add the G-code for each line in each layer. To do this, we simply iterate over every polygon and its infill and add G0 and G1 codes accordingly. The result will be a long series of codes that looks very similar to the following example:</p>
-<pre><code>
+				<br/><img src="images/slicer/grid.png">
+			</div>
+			<p><br/>The next thing the slicer does is add the G-code for each line in each layer. To do this, the software iterates over each polygon and its infill and adds G0 and G1 codes accordingly. The result will be a long series of codes that look similar to the following example:</p><pre class="container"><code>
 G0 X-4.2749 Y-13.8917 F9000
 G1 X-5.2099 Y-13.7070 E0.9531283 F1800
 G1 X-9.1711 Y-11.0558 E4.766521
-G1 X-9.9275 Y-10.5496 E0.9101753
-</code></pre><br/>
-			
-			<p>We're using F9000 for G0 (free movement, not extruding) commands, which will attempt to move the printer head at 150mm/s. While the printer is actually extruding (G1), we're only going to use a 5th of that speed, at 30mm/s. These values can be adjusted to however fast one wants to print. Be warned, however, as this can affect the quality of the print. The E value, which is the amount of filament to extrude, is calculated using the distance between the previous point and the point the print head is intended to travel to.</p>
-
-			<p>At the end of our G-code, we're going to want to add some commands such as <code>M107</code>, which will turn off the fan, and <code>M104 S0</code>, which will turn off the hot-end. One can experiment around with these as one pleases, and see how results change.</p>
-
-			<p>The G-code file generated by the program can simply be put on an SD Card, USB drive, or whatever type of storage is preferred for the printer being used.</p>
-
+G1 X-9.9275 Y-10.5496 E0.9101753</code></pre><br/>
+			<p>Here the GCode is telling the printer to use F9000 for G0 commands (free movement, not extruding), which will attempt to move the printer head at 150mm/s. While the printer is actually extruding (G1), the printer is being told to only use a 5th of that speed, at 30mm/s. These values can be adjusted to however fast one wants to print, however, this can affect the quality of the print. The E value, which is the amount of filament to extrude, is calculated using the distance between the previous point and the point the print head is intended to travel to. At the end of the G-code, some commands, such as M107 (turn off fan) or M104 S0 (turn off the hot-end), can be added optionally based on a user's preferences.</p>
+			<p><br/>The G-code file generated by the program can then be put on an SD Card, USB drive, or whatever type of storage is preferred for the printer being used.</p>
 			<div class="text-center">
-				<img src="images/slicer/simulated.png">
-				<p class="float-right" style="font-size: 12px;">Simulation of what the GCode would print. (Rendered using Cura's GCode visualizer)</p>
-			</div><br/>
-
-			
-
-		</div>	
-		
-	</div>
-	<div class="card container mb-4">
-		<div class="card-body text-center">
-			<p class="card-text">The code and binaries for this project are available on my <a href="https://github.com/Jaerdon/Slicer">GitHub</a></p>
+				<br/><img src="images/slicer/teapot_finished.jpg">
+			</div>
 		</div>
 	</div>
+
+	<div class="card container mb-4">
+		<a name="credits"></a>
+		<div class="card-body">
+			<p>Special thanks to:<br/>
+				<div class="container">
+				Alexander Ov, for help with additive manufacturing<br/>
+				Michael Martin, for documentation review<br/>
+				Samuel Green, for helping to print test models<br/>
+				Timothy Crowder, for testing print settings and software<br/>
+				Trevor Stavropoulos, for his assistance with vector maths<br/>
+				</div>
+			</p>
+	</div>
+	
 
 </body>
 
