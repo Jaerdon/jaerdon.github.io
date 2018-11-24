@@ -248,7 +248,7 @@
 		<h1 class="card-title container"><br/><a name="docs">How it Works</a></h1>
 		<div class="card-body">
 			<h3>Understanding STL Files</h3>
-			<p>In order to turn a CAD model into something that a 3D printer can use, the first thing that the slicer does is read the information from an .stl file, which is effectively a collection of triangles in 3D space. These files come in one of two flavors: ASCII or binary. While the format differs slightly, they are effectively the same. Both styles start out with a header: In binary, this is an 80-byte header that might include various information such as the name and credits, but is generally not relevant. This is then followed by the amount of triangles in the model, and then the list of triangles. ASCII files start with the word solid followed by the name of the model, and then list each triangle. The triangles are in a .stl file follow the same general format: Normal Vector, Vertex 1, Vertex 2, & Vertex 3. The only real difference is the extra padding on the ASCII format and the encoding of the two.</p>
+			<p>In order to turn a CAD model into something that a 3D printer can use, the first thing that the slicer does is read the information from an <a href="https://www.3dsystems.com/quickparts/learning-center/what-is-stl-file">.stl</a> file, which is effectively a collection of triangles in 3D space. These files come in one of two flavors: ASCII or binary. While the format differs slightly, they are effectively the same. Both styles start out with a header: In binary, this is an 80-byte header that might include various information such as the name and credits, but is generally not relevant. This is then followed by the amount of triangles in the model, and then the list of triangles. ASCII files start with the word solid followed by the name of the model, and then list each triangle. The triangles are in a .stl file follow the same general format: Normal Vector, Vertex 1, Vertex 2, & Vertex 3. The only real difference is the extra padding on the ASCII format and the encoding of the two.</p>
 			<div class="text-center">
 				<img src="images/slicer/stl_formats_compared.png">
 			</div>
@@ -276,6 +276,9 @@
 			</div>
 			<h3><br/>Infill</h3>
 			<p>To create the infill for the model, the program creates a grid of line segments. There are a multitude of other styles of infill that could be used, however, for this project an adjustable grid was good enough.<br/>The grid is created by iterating over the x and y values within the the object's total area. Points that intersect the polylines are drawn across the polyline to the next point it intersects within its boundaries.</p>
+			<div class="text-center">
+				<img src="images/slicer/model_slice_outline_infill.png">
+			</div>
 			<h3><br/>G-code Generation</h3>
 			<p>G-code is a type of numerical control programming language used to tell machines exactly which toolpaths to take for a desired output. The flavor of G-code being using for this is the same flavor used by <a href="https://reprap.org/wiki/G-code">RepRap</a>, which is the firmware that the 3d printer this was made for uses. This will be how the results of the slicing software is exported.</p>
 			<p>The first thing the slicer needs to do is guarantee the machine knows what settings it should print with. For this the following codes are used:</p><pre class="container"><code>
