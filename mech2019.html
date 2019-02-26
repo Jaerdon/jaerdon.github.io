@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+	<meta charset="utf-8"/>
+	<title>Mechatronics 2019 Demo</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+	<style type="text/css">
+		img {max-width: 100%; max-height: 356pt}
+	</style>
+</head>
+<body>
+	<nav class="site-header navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="d-flex flex-column flex-md-row justify-content-between">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<div class="navbar-nav">
+					<a class="navbar-brand" href="index"><img src="images/jw_logo.png"></a>
+					<a class="nav-item nav-link" href="index">Home</a>
+					<a class="nav-item nav-link" href="experiments">Projects</a>
+					<a class="nav-item nav-link" href="mailto:j@jaerdon.com?Subject=Hey%20Jordan!">Contact</a>
+				</div>
+			</div>
+
+		</div>
+	</nav>
+	<br/>
+
+	<h1 class="display-4 text-center">Mechatronics 2019 Demo</h1><br/>
+	
+	<div class="container text-center" style="width:70%;">
+		<div class="jumbotron embed-responsive embed-responsive-16by9">
+			<embed class="embed-responsive-item" src="https://www.youtube.com/embed/AVTts6-KVgc?rel=0&showinfo=0&autoplay=1&controls=0" autoplay></embed>
+		</div>
+	</div>
+	<br/>
+	<div class="card container mb-4">
+		<h4 class="card-title container"><br/>Stack Magazine and Conveyor Distribution Demo</h4>
+		<div class="card-body">
+			<p>This project is was created as part of a project my friend <a href="">Jennah Bari</a> and I worked on to demonstrate Mechatronics principles. Mechatronics is a branch of engineering which focuses on unifying mechanical engineering, electrical engineering, control systems, and computer science into one cohesive system.</p>
+			<p>This demonstration shows an example industrial system with cylindrical parts placed onto the conveyor via a stack magazine. The system detects the presence of a cylinder using an optical sensor, which is triggered when an object breaks a light barrier. Once the conveyor has been activated, the part passes underneath a color sensor, which detects the color of the block and determines what operations to perform on the part. If the part is silver, the system performs a punch operation on the part, then sorts it by lowering a diverter. If the part is purple or red, the system simply sorts the part by activating the same diverter solenoid. If the part is blue or black, the part is considered defective and sorted into the discard bin for recycling. The cycle repeats for a preset number of cycles.</p>
+		</div>	
+	</div>
+	<div class="card container mb-4">
+		<h4 class="card-title container"><br/>System Overview</h4>
+		<div class="card-body">
+			<img src="images/mech/assembly.png">
+		</div>
+		<h4 class="card-title container"><br/>I/O Configuration</h4>
+		<h5 style="color:grey" class="container">Hover over each element to view.</h5>
+		<div class="card-body row">
+			<div class="col-md-6 text-center">
+				<img id="zoom" src="images/mech/distributor.png">
+			</div>
+			<div class="col-md-6" onmouseleave="$('#zoom')[0].src='images/mech/distributor.png';">
+				<h5>Inputs</h5>	
+				<ul class="list-group">
+					<li class="list-group-item list-group-item-action" onmouseover="$('#zoom')[0].src='images/mech/optical.png';">03. Optical Sensor</li>
+					<li class="list-group-item list-group-item-action" onmouseover="$('#zoom')[0].src='images/mech/color.png';">05. Color Sensor</li>
+				</ul><br/>
+				<h5>Outputs</h5>	
+				<ul class="list-group">
+					<li class="list-group-item list-group-item-action" onmouseover="$('#zoom')[0].src='images/mech/diverter.png';">02. Diverter Solenoid</li>
+					<li class="list-group-item list-group-item-action" onmouseover="$('#zoom')[0].src='images/mech/conveyor.png';">04. Conveyor Power</li>
+					<li class="list-group-item list-group-item-action" onmouseover="$('#zoom')[0].src='images/mech/conveyor.png';">06. Conveyor Direction</li>
+					<li class="list-group-item list-group-item-action" onmouseover="$('#zoom')[0].src='images/mech/stacka.png';">08. Stack Magazine Retract Valve</li>
+					<li class="list-group-item list-group-item-action" onmouseover="$('#zoom')[0].src='images/mech/stackb.png';">10. Stack Magazine Extend Valve</li>
+					<li class="list-group-item list-group-item-action" onmouseover="$('#zoom')[0].src='images/mech/punch.png';">12. Punch Operation Valve</li>
+				</ul>
+			</div>
+		</div>	
+	</div>
+	<div class="card container mb-4">
+		<h4 class="card-title container"><br/>Code</h4>
+		<div class="card-body">
+			<h5>Source Code</h5>
+			<p>The code for this project is available on GitHub <a href="https://github.com/Jaerdon/mech2019demo/">here</a>.</p>
+			<h5>Notes</h5>
+			<p>This project was written in C as opposed to the traditional ladder logic used with the <a href="https://www.festo-didactic.com/int-en/services/software/easylab/easykit-mini.htm">EasyKit Mini</a>. The documentation for all the ports used can be found <a href="https://github.com/Jaerdon/mech2019demo/blob/master/ports.txt">here</a>, and instructions for building the project can be found in the EasyLab documentation <a href="https://www.festo-didactic.com/ov3/media/customers/1100/easylab_en.pdf">here</a>.</p>
+		</div>	
+	</div>
+	<div class="card container mb-4">
+		<div class="card-body text-center">
+			<h5 class="card-text" style="color:grey">Special thanks to Mike Martin and Festo Didactic.</h5>
+		</div>
+	</div>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>	
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="	sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+</html>
