@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+	<meta charset="utf-8"/>
+	<title>3D Printing My Brain</title>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+	<style type="text/css">
+		canvas { max-width: 100%; max-height: 100% }
+  	.jumbotron { padding: 1rem; }
+	</style>
+</head>
+<body>
+	<nav class="site-header navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="d-flex flex-column flex-md-row justify-content-between">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<div class="navbar-nav">
+					<a class="navbar-brand" href="index"><img src="images/jw_logo.png"></a>
+					<a class="nav-item nav-link" href="index">Home</a>
+					<a class="nav-item nav-link" href="experiments">Projects</a>
+					<a class="nav-item nav-link" href="mailto:j@jaerdon.com?Subject=Hey%20Jordan!">Contact</a>
+					<!--<a class="nav-item nav-link" href="resume.pdf" target="_blank">Resume</a>-->
+				</div>
+			</div>
+
+		</div>
+	</nav>
+	<br/>
+
+	<h1 class="container display-4 text-center">3D Printing My Brain</h1>
+	<br/>
+
+	<div class="card container" id="showbrain">
+		<div class="card-body container">
+			<button type="button" class="btn btn-primary float-right" onclick="showBrain()">Load 3D Model</button>
+			<h5>Show interactive brain model?</h5>
+			<p class="text-danger"><i>Warning: Large models may lag on older computers.</i></p>
+		</div>
+	</div>
+
+	<div id="jumbo" class="jumbotron container" hidden>
+		<div id="loader" class="text-center" hidden>
+		<div class="spinner-border m-5" role="status">
+			<span class="sr-only">Loading...</span>
+		</div></div>
+		<div class="text-center" id="brain" hidden></div>
+		<p id="info" class="text-center text-secondary" hidden>Click and drag to rotate model. Scroll to zoom.</p>
+	</div>
+	<br/>
+	<div class="card container mb-4">
+		<div class="card-body">
+			<h5 class="card-title">Background</h5>
+			<p>In late 2018, I had an <a href="https://en.wikipedia.org/wiki/Magnetic_resonance_imaging">MRI</a> scan done. Recently, I requested the data from the MRI on a disc.
+				The data is stored in a format called <a href="https://www.dicomstandard.org/">DICOM</a>, which has become the standard for medical imaging.
+				There are a number of tools created specifically for the purpose of viewing DICOM data, I chose to use <a href="https://www.slicer.org/">3D Slicer</a>, which is a fantastic open-source tool that can turn DICOM series into 3D models.
+				It was printed on my friend <a href="https://www.linkedin.com/in/timothy-crowder-3b555a16a/">Tim's</a> (heavily modded) Maker Select v2.
+				The model isn't perfect, but for the amount of time I had to create it I am happy with the results.</p>
+		</div>
+	</div>
+	<div class="card container mb-4">
+		<div class="card-body">
+			<h5 class="card-title">Images</h5>
+			<img class="img-fluid" src="images/brain/0.jpg">
+			<img class="img-fluid" src="images/brain/1.jpg">
+			<img class="img-fluid" src="images/brain/3.png">
+			<img class="img-fluid" src="images/brain/4.png">
+			<img class="img-fluid" src="images/brain/5.png">
+		</div>
+	</div>
+
+	<script src="https://cdn.rawgit.com/mrdoob/three.js/master/build/three.js"></script>
+	<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
+	<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/STLLoader.js"></script>
+	<script src="js/stlrenderer.js"></script>
+	<script type="text/javascript">
+		showBrain = () => {
+			document.getElementById('showbrain').hidden = true
+				document.getElementById('jumbo').hidden = false;
+			document.getElementById('loader').hidden = false;
+			renderModel('brain', () => {
+				document.getElementById('loader').hidden = true;
+				document.getElementById('brain').hidden = false;
+				onWindowResize();
+				document.getElementById('info').hidden = false;
+			});
+		}
+	</script>
+</body>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+</html>
