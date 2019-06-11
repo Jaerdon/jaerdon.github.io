@@ -2,7 +2,7 @@
 <html lang="en">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <head>
-	<title>PrintUI 3D by Jaerdon</title>
+	<title>PrintUI 3D</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <body onload="gcodeHackery()">
@@ -17,7 +17,7 @@
 		#homeSet { column-count: 3; column-gap: 1px; height: 3em; }
 
 		#footer { position: fixed; bottom: 0; right: 0; left: 0; width: 100%;}
-		
+
 		.input { height: 2.75em; width: 100%; position: relative; font-size: 1.05em; text-align: center; background-color: #C9C9C9; color: black; border: 3px solid white; }
 
 		.buttonX { height: 2.75em; width: 100%; font-family: Roboto; position: relative; font-size: 1.05em; background-color: #E2071C; color: white; border: 3px solid white; }
@@ -41,7 +41,7 @@
 		.buttonAll:active { border: 3px solid white; background-color: #FA6607; }
 
 	</style>
-	
+
 	<div id="printProgess">
 		<div id="bar">Idle</div>
 	</div><br>
@@ -117,7 +117,7 @@
 			});
 		}
 
-		function gcodeHackery() {	
+		function gcodeHackery() {
 			sendGCode("M28 weblog.txt; Starts logging to SD card.")
 		}
 
