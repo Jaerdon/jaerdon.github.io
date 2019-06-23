@@ -19,7 +19,7 @@ animate = () => {
 
 onWindowResize = () => {
 		renderer.setSize( window.innerWidth * .75, window.innerHeight * .5 );
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = window.innerWidth / window.innerHeight * 1.5;
     camera.updateProjectionMatrix();
 		controls.update();
 }
