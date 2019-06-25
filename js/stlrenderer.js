@@ -1,7 +1,7 @@
 THREE.Cache.enabled = true;
 
 const scene = new THREE.Scene();
-const camera = new THREE.OrthographicCamera( 75, window.innerWidth / window.innerHeight * 1.5, 0.1, 1000 );
+const camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 1, 1000 );
 const renderer = new THREE.WebGLRenderer( {alpha: true } );
 const controls = new THREE.OrbitControls( camera, renderer.domElement );
 controls.enablePan = false;
@@ -18,8 +18,8 @@ animate = () => {
 }
 
 onWindowResize = () => {
-		renderer.setSize( window.innerWidth * .75, window.innerHeight * .5 );
-    camera.aspect = window.innerWidth / window.innerHeight * 1.5;
+		renderer.setSize( window.innerWidth * .5, window.innerHeight * .5 );
+    camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 		controls.update();
 }
@@ -27,7 +27,7 @@ onWindowResize = () => {
 let loader = new THREE.STLLoader();
 
 renderModel = (model, onFinish) => {
-	renderer.setSize( window.innerWidth * .75, window.innerHeight * .5 );
+	renderer.setSize( window.innerWidth / 2, window.innerHeight / 2 );
 	renderer.setClearColor( 0x000000, 0 );
 
 	document.getElementById(model).appendChild(renderer.domElement);
@@ -45,7 +45,8 @@ renderModel = (model, onFinish) => {
 			scene.remove(scene.children[1]);
 		}
 		geometry.computeBoundingSphere();
-		camera.position.z = 1.75 * geometry.boundingSphere.radius;
+		camera.position.z = geometry.boundingSphere.radius;
+		camera.zoom = geometry.boundingSphere.radius / 2;
 
 		controls.update();
 
@@ -53,7 +54,6 @@ renderModel = (model, onFinish) => {
 		geometry.rotateY(-1.5708);
 		const material = new THREE.MeshBasicMaterial({color: 0xDB7093})
 		const mesh = new THREE.Mesh(geometry, material);
-		mesh.x -= 10;
 
 		const geo = new THREE.EdgesGeometry( mesh.geometry );
 		const mat = new THREE.LineBasicMaterial( { color: 0x333333, linewidth: 2 } );
