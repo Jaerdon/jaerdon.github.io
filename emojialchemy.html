@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="utf-8"/>
+	<title>⚗️ Emoji Alchemy</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style type="text/css">
+    html, body { height: 100%; width: 100%}
+    .dragspawn {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      touch-action: none;
+      font-size: 3em;
+    }
+    .dragspawn:hover { cursor: pointer; }
+    .draggable {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      touch-action: none;
+      position: fixed;
+      font-size: 3em;
+    }
+    .draggable:hover { cursor: pointer; }
+    .fill { height: 100%; width: 100%; }
+	</style>
+</head>
+<body>
+  <div id="workbench" class="bg-light container-fluid fill text-center">
+    <div id="table" class="container-fluid">
+      <br/><h1>⚗️ Emoji Alchemy</h1><br/>
+      <div id="toolbox" class="card container-fluid bg-info col-lg-3 float-right">
+        <br/><h3 class="card-title text-center text-white text-monospace"><br/>Elements</h3>
+        <div class="card-body" style="overflow:auto;">
+          <div id="elements" class="row">
+            <span class="col dragspawn" title="Fire">🔥</span>
+            <span class="col dragspawn" title="Water">💧</span>
+            <span class="col dragspawn" title="Air">🌫️</span>
+            <span class="col dragspawn" title="Earth">🌎</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="js/emojialchemy.js" charset="utf-8"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>
