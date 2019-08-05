@@ -18,16 +18,17 @@ animate = () => {
 }
 
 onWindowResize = () => {
-		renderer.setSize( window.innerWidth * .5, window.innerHeight * .5 );
-    camera.aspect = window.innerWidth / window.innerHeight;
+		renderer.setSize( window.innerWidth, window.innerHeight);
+    //camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
+		camera.updateMatrix();
 		controls.update();
 }
 
 let loader = new THREE.STLLoader();
 
 renderModel = (model, onFinish) => {
-	renderer.setSize( window.innerWidth / 2, window.innerHeight / 2 );
+	renderer.setSize( window.innerWidth * .75, window.innerHeight / 2 );
 	renderer.setClearColor( 0x000000, 0 );
 
 	document.getElementById(model).appendChild(renderer.domElement);
@@ -45,6 +46,7 @@ renderModel = (model, onFinish) => {
 			scene.remove(scene.children[1]);
 		}
 		geometry.computeBoundingSphere();
+
 		camera.position.z = geometry.boundingSphere.radius;
 		camera.zoom = geometry.boundingSphere.radius / 2;
 
