@@ -27,6 +27,13 @@ const spawnDraggable = (contents, x, y) => {
   return draggable;
 }
 
+const clearBoard = () => {
+  $.each(workbench, (index) => {
+    workbench[index].remove();
+  });
+  workbench = [];
+}
+
 $(document).ready(() => {
 
   $.getJSON("emojialchemy.json", (data) => {

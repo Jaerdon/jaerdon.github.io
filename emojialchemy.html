@@ -25,6 +25,14 @@
       position: fixed;
       font-size: 3em;
     }
+		.interact {
+			-webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+			color: rgba(0, 0, 0, 0.5);
+		}
+		.interact:hover { cursor: pointer; }
     .draggable:hover { cursor: pointer; }
     .fill { height: 100%; width: 100%; }
 	</style>
@@ -33,6 +41,7 @@
   <div id="workbench" class="bg-light container-fluid fill text-center">
     <div id="table" class="container-fluid">
       <br/><h1>⚗️ Emoji Alchemy</h1><br/>
+			<div id="clear" class="container-fluid bg-light col-lg-1 float-left"><h1 class="interact" onclick="clearBoard();">🗑</h1>️</div>
       <div id="toolbox" class="card container-fluid bg-info col-lg-3 float-right">
         <br/><h3 class="card-title text-center text-white text-monospace"><br/>Elements</h3>
         <div class="card-body" style="overflow:auto;">
