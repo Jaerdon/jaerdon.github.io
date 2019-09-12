@@ -106,7 +106,7 @@
 			<div class="carousel-inner container">
 				<div class="carousel-item active">
 					<div class="row">
-						<div class="col-xl-4 col-md-5"><img src="images/aquaponics/overview.jpg"></div>
+						<div class="col-xl-4 col-md-5"><img src="images/aquaponics/overview.jpg" srcset="images/aquaponics/overview_sm.jpg 185w, images/aquaponics/overview_md.jpg 369w"></div>
 						<div class="w-100 d-md-none space"><br/></div>
 						<div class="col-xl-8 col-md-7">
 							<p>Aquaponics is a farming technique which combines both aquaculture and hydroponics subsystems into a single cooperative environment.
@@ -119,8 +119,8 @@
 				</div>
 				<div class="carousel-item">
 					<div class="row">
-						<div class="col-xl-4 col-md-5"><img src="images/aquaponics/tank.jpg" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0">
-							<img src="images/aquaponics/aquaculture.jpg" style="border-top-left-radius: 0; border-top-right-radius: 0"></div>
+						<div class="col-xl-4 col-md-5"><img src="images/aquaponics/tank.jpg" srcset="images/aquaponics/tank_sm.jpg 328w, images/aquaponics/tank_md.jpg 656w" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0">
+							<img src="images/aquaponics/aquaculture.jpg" srcset="images/aquaponics/aquaculture_sm.jpg 369w" style="border-top-left-radius: 0; border-top-right-radius: 0"></div>
 							<div class="w-100 d-md-none space"><br/></div>
 						<div class="col-xl-8 col-md-7">
 							<p>For this project, minnows were chosen to be used in the aquaculture portion of the system.
@@ -130,8 +130,8 @@
 				</div>
 				<div class="carousel-item">
 					<div class="row">
-						<div class="col-xl-4 col-md-5"><img src="images/aquaponics/hydroponics.jpg" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0">
-							<img src="images/aquaponics/row.jpg" style="border-top-left-radius: 0; border-top-right-radius: 0"></div>
+						<div class="col-xl-4 col-md-5"><img src="images/aquaponics/hydroponics.jpg" srcset="images/aquaponics/hydroponics_sm.jpg 328w, images/aquaponics/hydroponics_md.jpg 656w" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0">
+							<img src="images/aquaponics/row.jpg" srcset="images/aquaponics/row_sm.jpg 260w, images/aquaponics/row_md.jpg 520w, images/aquaponics/row_lg.jpg 1040w" style="border-top-left-radius: 0; border-top-right-radius: 0"></div>
 							<div class="w-100 d-md-none space"><br/></div>
 						<div class="col-xl-8 col-md-7">
 							<p>In the upper, hydroponic section of the system, plants are grown in three enclosed channels, each with four openings filled by one of the NFT Units.
@@ -142,7 +142,7 @@
 				</div>
 				<div class="carousel-item">
 					<div class="row">
-						<div class="col-xl-4 col-md-5"><img src="images/aquaponics/nft_bottom.jpg"></div>
+						<div class="col-xl-4 col-md-5"><img src="images/aquaponics/nft_bottom.jpg" srcset="images/aquaponics/nft_bottom_sm.jpg 195w, images/aquaponics/nft_bottom_md.jpg 390w, images/aquaponics/nft_bottom_lg.jpg 780w"></div>
 						<div class="w-100 d-md-none space"><br/></div>
 						<div class="col-xl-8 col-md-7">
 							<p>The units for holding the plants were developed based around the Nutrient Film Technique (<a href="https://en.wikipedia.org/wiki/Nutrient_film_technique">NFT</a>).
@@ -154,7 +154,7 @@
 				</div>
 				<div class="carousel-item">
 					<div class="row">
-						<div class="col-xl-4 col-md-5"><img src="images/aquaponics/controls.jpg"></div>
+						<div class="col-xl-4 col-md-5"><img src="images/aquaponics/controls.jpg" srcset="images/aquaponics/controls_sm.jpg 369w"></div>
 						<div class="w-100 d-md-none space"><br/></div>
 						<div class="col-xl-8 col-md-7">
 							<p>The whole system was controlled by the combined use of a <a href="https://en.wikipedia.org/wiki/Programmable_logic_controller">Programmable Logic Controller</a> (PLC) and a <a href="https://www.raspberrypi.org/">Raspberry Pi</a>.
@@ -184,7 +184,7 @@
 					<p>The whole system is accessible through a web interface running on the Raspberry Pi written in Flask.
 						This interface is visible when connected to the network broadcasted by the Pi.
 						The webserver periodically queries the two DS18B20 thermometers and the EZO pH Sensor, and displays the information for the end user to see.
-						This data is also recorded in a .csv file which is stored on the Pi, and can be downloaded from the webserver.</p>
+						This data is also recorded in a .csv file which is stored on the Pi, and can be downloaded from the webserver for future reference and analysis.</p>
 				</div>
 				<div class="col-xl-6 col-md-5">
 					<img src="images/aquaponics/laptop.jpg">
@@ -200,7 +200,7 @@
 				</div>
 				<div class="col-xl-9 col-md-9 col-sm-8">
 					<p>Power to the system in supplied through an normal AC outlet. The AC power is directly supplied to the growlight, and converted to 12V DC power to control the PLC and the water pumps.
-						12V DC power is too much for the Raspberry Pi or its sensors to handle, so it is stepped down through the use of a LM7805 chip. The Raspberry Pi can optionally be powered over USB as well.</p>
+						12V DC power is too much for the Raspberry Pi or its sensors to handle, so the voltage is stepped down through the use of a LM7805 chip. The Raspberry Pi can optionally be powered over USB as well.</p>
 				</div>
 			</div>
 		</div>
@@ -211,18 +211,18 @@
 		<div class="card-body">
 			<h4>Below is a chronological collection of images from our fabrication process. Click on any image to learn more.</h4>
 			<div class="row no-gutters">
-				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_0.jpg" alt='A plastic cart was bought for portability, modularity, and to make the overall build process faster.'></div>
-				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_1a.jpg" alt='4" PVC pipe was used to make the channels. The three channels were built to fit the top of the cart.'></div>
-				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_2a.jpg" alt='Four 3.5" holes were cut in each channel using a hole saw.'></div>
-				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_3.jpg" alt='Wooden stands were used to suspend the growlight.'></div>
-				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_4.jpg" alt='A thermometer is embedded into the hydroponic system to measure temperature at predetermined intervals.'></div>
-				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_5.jpg" alt='The control panel was 3D printed to house the Raspberry Pi, PLC, and power adapter.'></div>
-				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_6.jpg" alt='Connected directly to the Raspberry Pi is two thermometers and a temperature sensor. The sensor mount is modular and made to be replaced easily on the control panel.'></div>
-				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_7a.jpg" alt='The initial prototype for the NFT units was successful, with the roots growing into and through the lattice structure. Black ABS was later swapped for white ASA to prevent the plant from heating up and to prevent degredation ABS experiences from the UV light.'></div>
-				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_8.jpg" alt='To save time while the full aquaoponics system was being constructed, plants began growing in a miniature hydroponics settings inside the NFT units.'></div>
-				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_9.jpg" alt='The control panel fully connected, with the Raspberry Pi connected to the PLC over Ethernet for control via Modbus.'></div>
-				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_10.jpg" alt='The final system, with all parts assembled.'></div>
-				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_11.jpg" alt='The functional prototype.'></div>
+				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_0.jpg" srcset="images/aquaponics/sm_fab_0.jpg 369w" alt='A plastic cart was bought for portability, modularity, and to make the overall build process faster.'></div>
+				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_1a.jpg" srcset="images/aquaponics/sm_fab_1a.jpg 390w, images/aquaponics/md_fab_1a.jpg 780w, images/aquaponics/lg_fab_1a.jpg 1560w" alt='4" PVC pipe was used to make the channels. The three channels were built to fit the top of the cart.'></div>
+				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_2a.jpg" srcset="images/aquaponics/sm_fab_2a.jpg 390w, images/aquaponics/md_fab_2a.jpg 780w, images/aquaponics/lg_fab_2a.jpg 1560w" alt='Four 3.5" holes were cut in each channel using a hole saw.'></div>
+				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_3.jpg" srcset="images/aquaponics/sm_fab_3.jpg 390w, images/aquaponics/md_fab_3.jpg 780w, images/aquaponics/lg_fab_3.jpg 1560w" alt='Wooden stands were used to suspend the growlight.'></div>
+				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_4.jpg" srcset="images/aquaponics/sm_fab_4.jpg 390w, images/aquaponics/md_fab_4.jpg 780w, images/aquaponics/lg_fab_4.jpg 1560w" alt='A thermometer is embedded into the hydroponic system to measure temperature at predetermined intervals.'></div>
+				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_5.jpg" srcset="images/aquaponics/sm_fab_5.jpg 390w, images/aquaponics/md_fab_5.jpg 780w, images/aquaponics/lg_fab_5.jpg 1560w" alt='The control panel was 3D printed to house the Raspberry Pi, PLC, and power adapter.'></div>
+				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_6.jpg" srcset="images/aquaponics/sm_fab_6.jpg 300w, images/aquaponics/md_fab_6.jpg 600w" alt='Connected directly to the Raspberry Pi is two thermometers and a temperature sensor. The sensor mount is modular and made to be replaced easily on the control panel.'></div>
+				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_7a.jpg" srcset="images/aquaponics/sm_fab_7a.jpg 390w, images/aquaponics/md_fab_7a.jpg 780w, images/aquaponics/lg_fab_7a.jpg 1560w" alt='The initial prototype for the NFT units was successful, with the roots growing into and through the lattice structure. Black ABS was later swapped for white ASA to prevent the plant from heating up and to prevent degredation ABS experiences from the UV light.'></div>
+				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_8.jpg" srcset="images/aquaponics/md_fab_8.jpg 293w, images/aquaponics/md_fab_8.jpg 585w, images/aquaponics/lg_fab_8.jpg 1170w" alt='To save time while the full aquaoponics system was being constructed, plants began growing in a miniature hydroponics settings inside the NFT units.'></div>
+				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_9.jpg" srcset="images/aquaponics/sm_fab_9.jpg 390w, images/aquaponics/md_fab_9.jpg 780w, images/aquaponics/lg_fab_9.jpg 1560w" alt='The control panel fully connected, with the Raspberry Pi connected to the PLC over Ethernet for control via Modbus.'></div>
+				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_10.jpg" srcset="images/aquaponics/sm_fab_10.jpg 300w, images/aquaponics/md_fab_10.jpg 600w" alt='The final system, with all parts assembled.'></div>
+				<div class="col-md-2 col-sm-3 col-4"><img class="img-thumbnail" src="images/aquaponics/fab_11.jpg" srcset="images/aquaponics/sm_fab_11.jpg 300w, images/aquaponics/md_fab_11.jpg 600w" alt='The functional prototype.'></div>
 			</div>
 		</div>
 	</div></a>
