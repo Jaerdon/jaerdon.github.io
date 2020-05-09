@@ -6,7 +6,7 @@
   align-items: center;
 }
 h1 { color: #FFF }
-h2, { color: #CCC }
+h2 { color: #CCC }
 h3,h4,h5 { color: #EEE }
 li,th,td,pre,div { color: #CCC }
 body { background-color: #343a40 }
