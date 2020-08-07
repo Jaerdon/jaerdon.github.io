@@ -54,7 +54,6 @@ $(document).ready(() => {
       dragging.css("left", event.clientX - dragging.width() / 2);
       dragging.css("top", event.clientY - dragging.height() / 2);
     }
-    console.log(dragging);
   });
 
   $("#workbench").on("touchend mouseup", (event) => {   //Release
