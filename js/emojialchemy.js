@@ -48,12 +48,13 @@ $(document).ready(() => {
     }
   });
 
-  $("#workbench").on("touchmove mousemove", (event) => { // Drag
+  $(document.body).on("touchmove mousemove", (event) => { // Drag
     event.preventDefault();
     if (dragging != null) {
       dragging.css("left", event.clientX - dragging.width() / 2);
       dragging.css("top", event.clientY - dragging.height() / 2);
     }
+    console.log(dragging);
   });
 
   $("#workbench").on("touchend mouseup", (event) => {   //Release
