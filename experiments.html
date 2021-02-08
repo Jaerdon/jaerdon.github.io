@@ -7,16 +7,16 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="style.css">
 </head>
-<body class='bg-dark'>
-	<nav class="mt-3 mx-4 site-header navbar navbar-expand-lg navbar-dark bg-dark">
+<body>
+	<nav class="site-header navbar navbar-expand-lg navbar-dark">
 	  <a class="navbar-brand ml-0" href="index"><img src="images/jw_logo.png"></a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
 	  <div class="collapse navbar-collapse row ml-0" id="navbarText">
 	    <ul class="navbar-nav mr-auto">
-	      <li class="nav-item active"><a class="nav-link" href="index">Home <span class="sr-only">(current)</span></a></li>
-	      <li class="nav-item"><a class="nav-link" href="experiments">Projects</a></li>
+	      <li class="nav-item"><a class="nav-link" href="index">Home <span class="sr-only">(current)</span></a></li>
+	      <li class="nav-item active"><a class="nav-link" href="experiments">Projects</a></li>
 	      <li class="nav-item"><a class="nav-link" href="mailto:j@jaerdon.com?Subject=Hey%20Jordan!">Contact</a></li>
 	    </ul>
 	    <ul class="navbar-nav mr-2">
@@ -28,7 +28,7 @@
 	<br/>
 
 	<div class="container text-center mb-4">
-		<h3 class="display-4">Projects and Tools</h3>
+		<h3 class="display-4">Featured Projects and Tools</h3>
 	</div>
 	<div class="container card-deck mx-auto">
 		<div class="card mb-4">
@@ -45,13 +45,14 @@
 			<img class="card-img-top" src="images/thumb_ihandshake.png" alt="VEX Code">
 			<div class="card-body">
 				<h5 class="card-title">ER4u & ProLight Handshaking</h5>
-				<p class="card-text">Implementation of an interface between Intelitek's ER-4u with their ProLight 1000 CNC mill.</p>
+				<p class="card-text">Implementation of an automated interface between an industrial robotic arm and a CNC mill.</p>
 			</div>
 			<div class="card-footer">
 				<a href="ihandshake" class="btn btn-primary">Check it out</a>
 			</div>
 		</div>
 		<div class="w-100 d-none d-sm-block d-md-none"></div>
+		<div class="w-100 d-none d-md-block d-lg-none"></div>
 		<div class="card mb-4">
 			<img class="card-img-top" src="images/thumb_mech.png" alt="">
 			<div class="card-body">
@@ -59,10 +60,9 @@
 				<p class="card-text">Mechatronics factory simulation using Festo equipment.</p>
 			</div>
 			<div class="card-footer">
-				<a href="mech2019" class="btn btn-primary">Check it out</a><a class="float-right" href="https://github.com/Jaerdon/mech2019demo"><img src="images/github_light.png" alt="Source Code"></a>
+				<a href="mech2019" class="btn btn-primary">Check it out</a><a class="float-right" href="https://github.com/Jaerdon/mech2019demo"><img src="images/github.png" alt="Source Code"></a>
 			</div>
 		</div>
-		<div class="w-100 d-none d-md-block d-lg-none"></div>
 		<div class="card mb-4">
 			<img class="card-img-top" src="images/thumb_slicer.png" alt="">
 			<div class="card-body">
@@ -70,31 +70,10 @@
 				<p class="card-text">Slicing program written to turn CAD models into machine code for 3D printers.</p>
 			</div>
 			<div class="card-footer">
-				<a href="slicerproject" class="btn btn-primary">How it Works</a><a class="float-right" href="https://github.com/Jaerdon/Slicer"><img src="images/github_light.png" alt="Source Code"></a>
+				<a href="slicerproject" class="btn btn-primary">How it Works</a><a class="float-right" href="https://github.com/Jaerdon/Slicer"><img src="images/github.png" alt="Source Code"></a>
 			</div>
 		</div>
-		<div class="w-100 d-none d-sm-block d-md-none"></div>
     <div class="w-100 d-none d-lg-block d-xl-block"></div>
-		<div class="card mb-4">
-			<img class="card-img-top" src="images/thumb_brain.png" alt="3D Models">
-			<div class="card-body">
-				<h5 class="card-title">Brain</h5>
-				<p class="card-text">3D printed brain using a model generated from DICOM data from an MRI.</p>
-			</div>
-			<div class="card-footer">
-				<a href="brain" class="btn btn-primary">Check it out</a>
-			</div>
-		</div>
-		<div class="card mb-4">
-			<img class="card-img-top" src="images/thumb_stl.png" alt="3D Models">
-			<div class="card-body">
-				<h5 class="card-title">3D Models</h5>
-				<p class="card-text">I create a lot of 3D files for various purposes. You can find some examples here, but many are hosted on my Thingiverse page.</p>
-			</div>
-			<div class="card-footer">
-				<a href="models" class="btn btn-primary">3D</a><a class="btn btn-secondary float-right" href="https://www.thingiverse.com/Jaerdon/designs" target="_blank">Thingiverse</a>
-			</div>
-		</div>
 		<div class="w-100 d-none d-md-block d-lg-none"></div>
 		<div class="w-100 d-none d-sm-block d-md-none"></div>
 		<div class="card mb-4">
@@ -104,7 +83,7 @@
 				<p class="card-text">For use with CNC programs that require number codes at the beginning of a line.</p>
 			</div>
 			<div class="card-footer">
-				<a href="ncodefix" class="btn btn-primary">Check it out</a><a class="float-right" href="https://raw.githubusercontent.com/Jaerdon/jaerdon.github.io/master/ncodefix.html"><img src="images/github_light.png" alt="Source Code"></a>
+				<a href="ncodefix" class="btn btn-primary">Check it out</a><a class="float-right" href="https://raw.githubusercontent.com/Jaerdon/jaerdon.github.io/master/ncodefix.html"><img src="images/github.png" alt="Source Code"></a>
 			</div>
 		</div>
 		<div class="card mb-4">
@@ -118,17 +97,6 @@
 			</div>
 		</div>
 		<div class="w-100 d-none d-sm-block d-md-none"></div>
-    <div class="w-100 d-none d-lg-block d-xl-block"></div>
-		<div class="card mb-4">
-			<img class="card-img-top" src="images/thumb_splitter.png" alt="Splitter">
-			<div class="card-body">
-				<h5 class="card-title">Splitter</h5>
-				<p class="card-text">Splits GCode for use with FDM Robotic Arms facing each other.</p>
-			</div>
-			<div class="card-footer">
-				<a href="https://raw.githubusercontent.com/Jaerdon/Splitter/master/Splitter.py" class="btn btn-primary">Check it out</a><a class="float-right" href="https://github.com/Jaerdon/Splitter"><img src="images/github_light.png" alt="Source Code"></a>
-			</div>
-		</div>
 		<div class="w-100 d-none d-md-block d-lg-none"></div>
 		<div class="card mb-4">
 			<img class="card-img-top" src="images/thumb_beepboop.png" alt="BeepBoop">
@@ -137,25 +105,14 @@
 				<p class="card-text">Markov-Chain based bot used to generate absurd sentences.</p>
 			</div>
 			<div class="card-footer">
-				<a href="beepboop" class="btn btn-primary">Check it out</a><a class="float-right" href="https://github.com/Jaerdon/BeepBoop"><img src="images/github_light.png" alt="Source Code"></a>
-			</div>
-		</div>
-		<div class="w-100 d-none d-sm-block d-md-none"></div>
-		<div class="card mb-4">
-			<img class="card-img-top" src="images/thumb_boat.png" alt="Electric Boat Project">
-			<div class="card-body">
-				<h5 class="card-title">Electric Boat Project</h5>
-				<p class="card-text">A 3d printable boat made for a physics class.</p>
-			</div>
-			<div class="card-footer">
-				<a href="boatproject" class="btn btn-primary">Check it out</a><a class="float-right" href="models/boat0.stl" target="_blank"><img src="images/3dmodel.png" alt="Source Files"></a>
+				<a href="beepboop" class="btn btn-primary">Check it out</a><a class="float-right" href="https://github.com/Jaerdon/BeepBoop"><img src="images/github.png" alt="Source Code"></a>
 			</div>
 		</div>
 		<div class="card mb-4">
 			<img class="card-img-top" src="images/thumb_alchemy.png" alt="Emoji Alchemy">
 			<div class="card-body">
 				<h5 class="card-title">Emoji Alchemy</h5>
-				<p class="card-text">Simple game inspired by Little Alchemy</p>
+				<p class="card-text">Simple game inspired by <a href="https://littlealchemy.com/">Little Alchemy</a></p>
 			</div>
 			<div class="card-footer">
 				<a href="emojialchemy" class="btn btn-primary">Check it out</a>

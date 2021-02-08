@@ -7,9 +7,11 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="style.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet"> 
 </head>
-<body class='bg-dark'>
-	<nav class="mt-3 mx-4 site-header navbar navbar-expand-lg navbar-dark bg-dark">
+<body>
+	<nav class="site-header navbar navbar-expand-lg navbar-dark">
 	  <a class="navbar-brand ml-0" href="index"><img src="images/jw_logo.png"></a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
@@ -27,73 +29,77 @@
 	  </div>
 	</nav>
 	<br/>
-		<div class="container-fluid mt-md-1 px-md-5">
-			<div class="row w-100">
-
-				<div class="col-xl-5">
-					<div class="mx-2 px-2 mx-md-4 px-md-5 mt-md-5"><br/>
-						<h2 class="display-4">Hi, I'm</h2>
-						<h1 class="display-2 font-weight-normal">JORDAN</h1><br/>
-						<p class="font-weight-light" style="font-size: 18pt;">I'm an engineering student from Southern California</p>
-						<p class="font-weight-light" style="font-size: 18pt;">Primarily, I work in programming, robotics, and automated manufacturing.</p><br/>
-						<p class="text-center mx-auto px-1"><a class="float-right btn mb-5" style="background-color: #404950; color: #FFF; font-size: 16pt" href="experiments" role="button">Why don't you <i>take a look</i>?</a></p><br/>
+	<div class="container-fluid mt-md-1 px-md-5">
+		<div class="w-100">
+			<div class="container">
+				<div class="pr-2 mr-md-4 px-md-5 mt-md-5 row justify-content-center"><br/>
+					<div class="col row justify-content-center mx-auto">
+						<div>
+							<h2 class="display-4 ml-auto">Hi, I'm</h2>
+							<h1 style="font-family: 'Poiret One', cursive;" class="display-1 font-weight-normal">Jordan</h1><br/>
+						</div>
+					</div>
+					<div class="col-xl-7 col-12 my-auto py-auto mx-auto">
+						<p class="font-weight-light" style="font-size: 16pt;">I'm a second-year computer science & engineering student at the University of California, Irvine. </p>
+						<p class="font-weight-light" style="font-size: 15pt;">Right now, I'm serving as the president of <a href="https://cyberclub.ics.uci.edu/" target="_blank" rel="noopener noreferrer">Cyber@UCI</a>, UCI's cybersecurity club, and as the captain for our <a href="https://cyberclub.ics.uci.edu/ccdc/" target="_blank" rel="noopener noreferrer">CCDC</a> team. I also do work on the embedded systems team for the UCI <a href="https://sites.uci.edu/anteaterelectric/" target="_blank" rel="noopener noreferrer">FSAE Electric Vehicle</a> team.</p>
+						<!--<p class="text-center mx-auto px-1"><a class="float-right btn btn-primary mb-5" style="font-size: 16pt" href="experiments" role="button">Why don't you <i>take a look</i>?</a></p>-->
 					</div>
 				</div>
-
-				<div class="col-xl-7">
-					<div class="ml-md-3 pl-sm-3 mr-md-5">
-							<h3 class="display-4 py-auto">Featured Projects</h3><br/>
-							<div class="container">
-								<div class="card mb-5 border-dark">
-									<div class="row">
-										<div class="col-md-4">
-											<img class="card-img" src="images/thumb_aquaponics.png" alt="">
-										</div>
-										<div class="card-body col-md-8 mx-1 mx-sm-0">
-											<h3 class="card-title px-2 mx-sm-auto">Hooked on 'Ponics</h3>
-											<p class="card-text px-2 mx-sm-auto">Fully autonomous aquaponics system designed and prototyped for our High School senior design project. </p>
-											<div class="container text-center">
-												<a type="button" class="btn btn-primary px-auto mr-1 mr-md-auto text-white" href="aquaponics">View Project<span class="ml-2 fa fa-external-link"></span></a>
-
-											</div>
-										</div>
-									</div>
+			</div>
+			<div class="container">
+				<div class="ml-md-3 mt-3 pl-sm-3 mr-md-5">
+					<h3 class="display-4 py-auto" style="">Featured Projects</h3><br/>
+					<div class="container row">
+						<div class="card mb-5">
+							<div class="row">
+								<div class="col-md-4">
+									<img class="card-img" src="images/thumb_aquaponics.png" alt="">
 								</div>
-								<div class="card mb-5 border-dark">
-									<div class="row">
-										<div class="col-md-4">
-											<img class="card-img" src="images/thumb_ihandshake.png" alt=""></div>
-										<div class="card-body col-md-8">
-											<h3 class="card-title px-2 mx-sm-auto">ER-4u & ProLight Handshaking</h3>
-											<p class="card-text px-2 mx-sm-auto">Implementation of an interface between Intelitek's ER-4u with their ProLight 1000 CNC mill.</p>
-											<div class="container text-center">
-												<a type="button" class="btn btn-primary px-auto mr-1 mr-md-auto text-white" href="ihandshake">View Project<span class="ml-2 fa fa-external-link"></span></a>
-												<a type="button" class="btn btn-secondary px-auto ml-1 ml-md-auto text-white" href="https://github.com/Jaerdon/ER4U_Project">View Source <span class="ml-1 fa fa-github"></span></a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card mb-5 border-dark">
-									<div class="row">
-										<div class="col-md-4">
-											<img class="card-img" src="images/thumb_mech.png" alt="">
-										</div>
-										<div class="card-body col-md-8">
-											<h3 class="card-title px-2 mx-sm-auto">Mechatronics Demonstration</h3>
-											<p class="card-text px-2 mx-sm-auto">Mechatronics factory simulation using Festo equipment.</p>
-											<div class="container text-center">
-												<a type="button" class="btn btn-primary px-auto mr-1 mr-md-auto text-white" href="mech2019">View Project<span class="ml-2 fa fa-external-link"></span></a>
-												<a type="button" class="btn btn-secondary px-auto ml-1 ml-md-auto text-white" href="https://github.com/Jaerdon/mech2019demo">View Source <span class="ml-1 fa fa-github"></span></a>
-											</div>
-										</div>
+								<div class="card-body col-md-8 mx-1 mx-sm-0">
+									<h3 class="card-title px-2 mx-sm-auto">Hooked on 'Ponics</h3>
+									<p class="card-text px-2 mx-sm-auto">Fully autonomous aquaponics system designed and prototyped for our High School senior design project. </p>
+									<div class="container text-center">
+										<a type="button" class="btn btn-primary px-auto mr-1 mr-md-auto text-white" href="aquaponics">View Project<span class="ml-2 fa fa-external-link"></span></a>
+
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="card mb-5">
+							<div class="row">
+								<div class="col-md-4">
+									<img class="card-img" src="images/thumb_ihandshake.png" alt=""></div>
+								<div class="card-body col-md-8">
+									<h3 class="card-title px-2 mx-sm-auto">ER-4u & ProLight Handshaking</h3>
+									<p class="card-text px-2 mx-sm-auto">Implementation of an interface between Intelitek's ER-4u with their ProLight 1000 CNC mill.</p>
+									<div class="container text-center">
+										<a type="button" class="btn btn-primary px-auto mr-1 mr-md-auto text-white" href="ihandshake">View Project<span class="ml-2 fa fa-external-link"></span></a>
+										<a type="button" class="btn btn-secondary px-auto ml-1 ml-md-auto text-white" href="https://github.com/Jaerdon/ER4U_Project">View Source <span class="ml-1 fa fa-github"></span></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card mb-5 w-100">
+							<div class="row">
+								<div class="col-md-4">
+									<img class="card-img" src="images/thumb_mech.png" alt="">
+								</div>
+								<div class="card-body col-md-8">
+									<h3 class="card-title px-2 mx-sm-auto">Mechatronics Demonstration</h3>
+									<p class="card-text px-2 mx-sm-auto">Mechatronics factory simulation using Festo equipment.</p>
+									<div class="container text-center">
+										<a type="button" class="btn btn-primary px-auto mr-1 mr-md-auto text-white" href="mech2019">View Project<span class="ml-2 fa fa-external-link"></span></a>
+										<a type="button" class="btn btn-secondary px-auto ml-1 ml-md-auto text-white" href="https://github.com/Jaerdon/mech2019demo">View Source <span class="ml-1 fa fa-github"></span></a>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-
 			</div>
+
 		</div>
+	</div>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
