@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>DNSGen</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+	<style type="text/css">
+		p { white-space: pre-wrap; background: #F9F9F9 };
+	</style>
+</head>
+<body>
+	<div class="container jumbotron mt-5">
+		<div class="row text-center">
+			<div class="text-center col-7">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="label">Domain</span>
+					</div>
+					<input id="domain" class="form-control" type="text" placeholder="domain.local" aria-describedby="label">
+				</div><br/>
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="label">Primary DNS</span>
+					</div>
+					<input id="record" class="form-control" type="text" placeholder="record" aria-describedby="label">
+					<input id="ip" type="text" class="form-control" placeholder="192.168.0.2">
+				</div><br/>
+			</div>
+			<div class="col-5 text-center d-none">
+				<button id="get-forward" class="btn btn-primary w-75">Get Forward Zone</button>
+				<button id="upload-forward" class="btn btn-primary">Upload</button>
+				<br/><br/>
+				<button id="get-reverse" class="btn btn-primary w-75">Get Reverse Zone</button>
+				<button id="upload-reverse" class="btn btn-primary">Upload</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-4">
+				DNS Entries
+				<div id="entries" class="w-100">
+					<div class="input-group">
+						<input type="text" class="form-control col-6" placeholder="walrus">
+						<div class="input-group-prepend">
+							<span class="input-group-text" type="text" id="subnet">192.168.0.</span>
+						</div>
+						<input type="text" class="form-control col-2" placeholder="3" aria-label="ip" aria-describedby="subnet">
+					</div>
+					<div class="input-group">
+						<input type="text" class="form-control col-6" placeholder="jackdaw">
+						<div class="input-group-prepend">
+							<span class="input-group-text" type="text" id="subnet">192.168.0.</span>
+						</div>
+						<input type="text" class="form-control col-2" placeholder="4" aria-label="ip" aria-describedby="subnet">
+					</div>
+				</div><br/>
+				<button id="add-row" class="btn btn-primary">Add Row</button>
+				<button id="sub-row" class="btn btn-secondary">Delete Row</button>
+			</div>
+			<div class="col-8">
+				Forward Zones
+				<p id="forward"></p>
+
+				Reverse Zones
+				<p id="reverse"></p>
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="js/dnsgen.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
