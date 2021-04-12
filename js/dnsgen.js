@@ -42,13 +42,9 @@ $(() => {
 			</div>`
 		);
 		let n = entries.children().length;
-		if (entries.children()[n-1].children[2].value == '') {
-			let placeholder = $(entries.children()[n-1]).children()[2].placeholder;
-			entry.children()[2].palceholder = `${Number(placeholder) + 1}`;
-		} else {
-			let value = $(entries.children()[n-1]).children()[2].value;
-			entry.children()[2].value = `${Number(value) + 1}`;
-		}
+		entry.children()[0].value = `host${n + 1}`;
+		let value = $(entries.children()[n-1]).children()[2].value;
+		entry.children()[2].value = `${Number(value) + 1}`;
 		entries.append(entry);
 
 		$("input").change(() => {
