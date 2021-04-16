@@ -1,7 +1,9 @@
 Adventure
 Ambrose Light
 Amity
+Antelope
 Ashen Dragon
+Billy o' Tea
 Black Dog
 Black Freighter
 Black Hawk
@@ -19,6 +21,7 @@ Flying Dragon
 Flying Dutchman
 Fortune
 Freedom
+Ganj-i-Sawai
 Golden Fleece
 Golden Hind
 Great Fortune
@@ -44,6 +47,7 @@ New York Revenge
 Otter
 Pearl
 Pelican
+Quedagh Merchant
 Queen Anne's Revenge
 Ranger
 Red Dragon
@@ -61,5 +65,3 @@ Walrus
 Whydah
 Wicked Wench
 William
-Ganj-i-Sawai
-Quedagh Merchant
