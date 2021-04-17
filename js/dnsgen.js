@@ -95,7 +95,7 @@ ${dns1}	IN	A 	${dns_ip}\n`;
 ${dns_ip.split('.')[3]}	IN	PTR	${dns1}.${domain}.\n`;
 		
 		for (var record in ns) {
-			zone = zone.concat(`${ns[record]}	IN	A	${record}\n`);
+			zone = zone.concat(`${ns[record]}	IN	PTR	${record}\n`);
 		}
 		$("#reverse").text(zone);
 	};
